@@ -732,6 +732,48 @@ body{background:var(--bg);color:var(--ink)}
 @keyframes shine{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--m) 60%,transparent))}}
 @media (prefers-reduced-motion:reduce){.bdg.full .mstar{animation:none}}
 .ribbon{position:absolute;top:12px;left:-6px;background:var(--m);color:#fff;font:700 12px var(--ui);padding:3px 12px;border-radius:0 999px 999px 0;box-shadow:0 4px 10px rgba(0,0,0,.12)}
+
+/* قياس الأثر */
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.stp{display:flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px 6px 6px;font:700 14px var(--ui);color:var(--ink2)}
+.stp b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#F1ECFA;color:var(--pri)}
+.stp.on{border-color:var(--pri);color:var(--pri)}
+.stp.ok b{background:#14B8A6;color:#fff}
+.att{display:grid;gap:10px;margin:14px 0}
+.attq{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#FAF7FF;border-radius:16px;padding:10px 14px;font-size:19px}
+.faces{display:flex;gap:10px}
+.face{border:2px solid transparent;background:#fff;border-radius:16px;padding:6px 8px 4px;display:grid;justify-items:center;gap:2px;font:600 12px var(--ui);color:var(--ink2)}
+.face svg{width:46px;height:46px}
+.face.on{border-color:var(--pri);background:#F1EBFF}
+.cq{margin:12px 0}
+.cq b{display:block;font-size:18px;margin-bottom:6px}
+.rub{width:100%;border-collapse:collapse;margin-top:10px}
+.rub th,.rub td{border-bottom:1px solid var(--line);padding:10px;text-align:center}
+.rub td:first-child,.rub th:first-child{text-align:right;font-size:17px}
+.rb{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;font:700 17px var(--ui);color:var(--ink2)}
+.rb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.kpi{background:linear-gradient(135deg,#F3EEFF,#fff);border:1px solid var(--line);border-radius:18px;padding:16px;font-size:14px;color:var(--ink2)}
+.kpi b{display:block;font:800 34px var(--ui);color:var(--pri)}
+.ichart{display:flex;gap:18px;align-items:flex-end;height:240px;padding:10px 6px 0;border-bottom:2px solid var(--line)}
+.icol{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+.ibars{flex:1;width:100%;display:flex;gap:6px;align-items:flex-end;justify-content:center}
+.ib{width:36%;max-width:46px;border-radius:10px 10px 4px 4px;position:relative;min-height:2px}
+.ib span{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font:700 12px var(--ui);color:var(--ink2);white-space:nowrap}
+.ib.pre{background:#D9CCFF}.ib.post{background:linear-gradient(180deg,#7B4DFF,#A98BFF)}
+.ilab{font:700 13px var(--ui);color:var(--ink);margin-top:8px;text-align:center}
+.ileg{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:13px;color:var(--ink2)}
+.ileg i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-inline-end:6px;vertical-align:middle}
+.ileg i.pre{background:#D9CCFF}.ileg i.post{background:#7B4DFF}
+.pos{color:#0E8F82;font-weight:700}.neg{color:#C2335A;font-weight:700}
+.itab td{font-size:14px;white-space:nowrap}
+.irep{padding:14mm;font-family:var(--ui);color:#2A1B4A}
+.irep h1{font:700 30px 'Amiri',serif;color:#5A2FD6;margin:0 0 4px}
+.irep h2{font:700 20px 'Amiri',serif;margin:18px 0 8px}
+.irep table{width:100%;border-collapse:collapse;font-size:13px}
+.irep th,.irep td{border:1px solid #ddd;padding:6px;text-align:center}
+.irep .fn{font-size:11px;color:#666;margin-top:14px}
+@media print{.irep .ichart{height:200px}}
 </style></head>
 <body><div id="app"></div><div id="print"></div>
 <script>/* ===== محتوى مملكة العربية ===== */
@@ -2166,6 +2208,163 @@ function badgeHTML(b, st) {
     <div class="bbar"><i style="width:${Math.round(v / b.need * 100)}%"></i></div><span class="bnum">${v} من ${b.need}</span></div>`;
 }
 
+/* ===== قياس الأثر ===== */
+const IMP_PASSAGE = `في بستان واسع على أطراف المدينة عاشت نحلة صغيرة اسمها شهد. كانت تخرج كل صباح مع أخواتها لتجمع رحيق الأزهار. وفي يوم من الأيام هبّت ريح شديدة، فابتعدت شهد عن الخلية، ولم تعرف طريق العودة. حطّت على غصن شجرة ليمون، وأخذت تفكر بهدوء. تذكرت أن أمها علّمتها أن تتبع رائحة زهر البرتقال القريب من الخلية. طارت شهد ببطء، وكانت تقف بين حين وآخر لتشمّ الهواء، حتى وصلت إلى أشجار البرتقال، ورأت الخلية من بعيد. فرحت أخواتها بعودتها، وقالت لها الملكة: لقد نجوتِ لأنكِ هدأتِ وفكّرتِ قبل أن تتصرفي. ومنذ ذلك اليوم صارت شهد تعلّم النحلات الصغيرات كيف يعدن إلى الخلية إذا ضللن الطريق.`;
+const IMP_Q = [
+ ['ما اسم النحلة الصغيرة؟', ['شهد', 'نور', 'ريم']],
+ ['لماذا ابتعدت شهد عن الخلية؟', ['بسبب ريح شديدة', 'لأنها أرادت اللعب', 'لأنها جاعت']],
+ ['على أي شجرة حطّت شهد؟', ['شجرة ليمون', 'شجرة برتقال', 'نخلة']],
+ ['كيف عرفت شهد طريق العودة؟', ['تبعت رائحة زهر البرتقال', 'سألت عصفورًا', 'انتظرت أخواتها']],
+ ['ما معنى «ضللن الطريق»؟', ['أضعن الطريق', 'وجدن الطريق', 'أسرعن في الطريق']],
+ ['ما الدرس الذي نتعلمه من القصة؟', ['الهدوء والتفكير قبل التصرف', 'السرعة في الطيران', 'البقاء في الخلية دائمًا']]
+];
+const IMP_DICT = 'سألت المعلمة الطالبات عن شاطئ البحر، فقرأت أسماء قصة جميلة، ورسمت شجرة عالية، ثم دعت صديقاتها إلى المكتبة.';
+const IMP_ATT = ['أحب قراءة القصص.', 'أستمتع بحصة اللغة العربية.', 'أحب أن أكتب بخط جميل.', 'أشعر بالثقة عندما أتحدث أمام زميلاتي.', 'أحب أن أتعلم كلمات عربية جديدة.', 'أقرأ كتبًا خارج المدرسة.'];
+const IMP_RUB = {
+  khatt: ['وضوح شكل الحرف', 'الالتزام بالسطر', 'صحة اتصال الحروف', 'وضع النقاط والعلامات في مواضعها'],
+  speak: ['وضوح الصوت ونطق الحروف', 'الوقف عند علامات الترقيم', 'التنويع في نبرة الصوت', 'الثقة والتواصل البصري']
+};
+const RUB_LV = ['يحتاج إلى دعم', 'مقبول', 'جيد', 'متميز'];
+// المقاييس: المفتاح، الاسم، الحد الأعلى (null = بلا حد ثابت)
+const IMP_M = [
+ ['wcpm', 'طلاقة القراءة (كلمة صحيحة/دقيقة)', null],
+ ['acc', 'دقة القراءة %', 100],
+ ['comp', 'الفهم القرائي', 6],
+ ['dict', 'الإملاء %', 100],
+ ['khatt', 'الخط', 16],
+ ['speak', 'التحدث', 16],
+ ['att', 'حب العربية', 18]
+];
+const IMP_STEPS = [['att', 'حب العربية'], ['read', 'القراءة'], ['comp', 'الفهم'], ['dict', 'الإملاء'], ['khatt', 'الخط'], ['speak', 'التحدث']];
+function impOf(st, ph) { st.impact = st.impact || {}; st.impact[ph] = st.impact[ph] || {}; return st.impact[ph]; }
+function impVal(st, ph, k) {
+  const d = st.impact && st.impact[ph]; if (!d) return null;
+  if (k === 'khatt' || k === 'speak' || k === 'att') { const a = d[k]; return a && a.every(x => x) ? a.reduce((s, x) => s + x, 0) : null; }
+  return d[k] ?? null;
+}
+function stepDone(st, ph, s) { const d = (st.impact || {})[ph] || {}; return s === 'read' ? d.wcpm != null : s === 'att' || s === 'khatt' || s === 'speak' ? !!(d[s] && d[s].every(x => x)) : d[s] != null; }
+function dictPct(ref, typed) {
+  const norm = w => stripT(w).replace(/[.,،؛:!؟?«»"()\-]/g, '').trim();
+  const a = ref.split(/\s+/).filter(Boolean).map(norm), b = typed.split(/\s+/).filter(Boolean).map(norm);
+  const n = a.length, m = b.length, L = Array.from({ length: n + 1 }, () => new Int16Array(m + 1));
+  for (let x = n - 1; x >= 0; x--) for (let y = m - 1; y >= 0; y--) L[x][y] = a[x] === b[y] ? L[x + 1][y + 1] + 1 : Math.max(L[x + 1][y], L[x][y + 1]);
+  return Math.round(L[0][0] / n * 100);
+}
+const FACES = ['<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FFD6E0"/><circle cx="14" cy="16" r="2.4" fill="#2A1B4A"/><circle cx="26" cy="16" r="2.4" fill="#2A1B4A"/><path d="M12 29q8-7 16 0" stroke="#2A1B4A" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>',
+ '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FFF1C9"/><circle cx="14" cy="16" r="2.4" fill="#2A1B4A"/><circle cx="26" cy="16" r="2.4" fill="#2A1B4A"/><path d="M13 27h14" stroke="#2A1B4A" stroke-width="2.4" stroke-linecap="round"/></svg>',
+ '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#CFF5EC"/><circle cx="14" cy="16" r="2.4" fill="#2A1B4A"/><circle cx="26" cy="16" r="2.4" fill="#2A1B4A"/><path d="M12 24q8 8 16 0" stroke="#2A1B4A" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>'];
+
+/* جلسة القياس: #assess/معرّف الطالبة/pre|post/الخطوة */
+ROUTES.assess = (app, sid, ph = 'pre', step = 'att') => {
+  if (!TEACHER) { go('#home'); setTimeout(teacherGate, 50); return; }
+  const st = S.students.find(s => s.id === sid); if (!st) { go('#teacher/impact'); return; }
+  const d = impOf(st, ph), phN = ph === 'pre' ? 'القياس القبلي' : 'القياس البعدي';
+  shell(app, '', { c1: '#7B4DFF', c2: '#5A2FD6', soft: '#14B8A6', title: phN + ': ' + st.name, desc: 'تُطبَّق الخطوات بالترتيب، وتُحفظ كل خطوة مستقلة', icon: ISVG.castle, wm: 'ق' }, () => { });
+  const body = $('#body');
+  const idx = IMP_STEPS.findIndex(s => s[0] === step);
+  const next = () => { const n = IMP_STEPS[idx + 1]; save(); n ? go(`#assess/${sid}/${ph}/${n[0]}`) : go('#teacher/impact'); };
+  body.innerHTML = `<div class="steps">${IMP_STEPS.map(([k, t], i) => `<a href="#assess/${sid}/${ph}/${k}" class="stp ${k === step ? 'on' : ''} ${stepDone(st, ph, k) ? 'ok' : ''}"><b>${stepDone(st, ph, k) ? '✓' : i + 1}</b>${t}</a>`).join('')}</div><div class="card" id="sbox"></div>
+   <div style="margin-top:12px"><a class="pill-link" href="#teacher/impact">لوحة نتائج القياس</a></div>`;
+  const box = $('#sbox');
+  if (step === 'att') {
+    const v = d.att ? d.att.slice() : Array(6).fill(0);
+    box.innerHTML = `<h2 class="sec">حب العربية</h2><p class="muted">تقرأ المعلمة العبارة، وتختار الطالبة الوجه الذي يعبّر عنها.</p>
+     <div class="att">${IMP_ATT.map((q, i) => `<div class="attq"><span>${q}</span><div class="faces">${FACES.map((f, j) => `<button class="face ${v[i] === j + 1 ? 'on' : ''}" data-i="${i}" data-v="${j + 1}" title="${['لا', 'أحيانًا', 'نعم'][j]}">${f}<small>${['لا', 'أحيانًا', 'نعم'][j]}</small></button>`).join('')}</div></div>`).join('')}</div>
+     <button class="btn" id="sv">حفظ والانتقال</button>`;
+    $$('.face', box).forEach(b => b.onclick = () => { v[+b.dataset.i] = +b.dataset.v; $$(`.face[data-i="${b.dataset.i}"]`, box).forEach(x => x.classList.toggle('on', x === b)); });
+    $('#sv').onclick = () => { if (v.some(x => !x)) { toast('بقيت عبارات دون إجابة'); return; } d.att = v; next(); };
+  } else if (step === 'read') {
+    const words = IMP_PASSAGE.split(/\s+/);
+    box.innerHTML = `<h2 class="sec">القراءة الجهرية</h2><p class="muted">تقرأ الطالبة النص بصوت مسموع. تُشغّل المعلمة المؤقت، وتضغط على كل كلمة فيها خطأ، وعند التوقف تُحدَّد آخر كلمة مقروءة إن لم يكتمل النص.</p>
+     <div class="timer" id="tm">00:00</div><div style="display:flex;gap:10px;justify-content:center;margin-bottom:14px"><button class="btn" id="fS">بدء</button><button class="btn ghost" id="fT" disabled>إيقاف</button><button class="btn gold" id="fC" disabled>حفظ النتيجة</button></div>
+     <div class="reader flu"><div class="story" style="--fs:26px">${words.map((w, i) => `<span class="word" data-i="${i}">${esc(w)}</span>`).join(' ')}</div></div>
+     ${d.wcpm != null ? `<p class="note" style="margin-top:12px">النتيجة المحفوظة: ${d.wcpm} كلمة صحيحة في الدقيقة، بدقة ${d.acc}%.</p>` : ''}`;
+    let t0 = 0, el = 0, iv = 0, state = 'idle', last = words.length - 1;
+    const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    window.__stopTimer = () => clearInterval(iv);
+    $('#fS').onclick = () => { state = 'run'; t0 = performance.now(); last = words.length - 1; $$('.word', box).forEach(w => w.classList.remove('err', 'last')); iv = setInterval(() => { el = (performance.now() - t0) / 1000; $('#tm').textContent = fmt(el); }, 200); $('#fS').disabled = true; $('#fT').disabled = false; };
+    $('#fT').onclick = () => { clearInterval(iv); el = (performance.now() - t0) / 1000; state = 'stopped'; $('#fT').disabled = true; $('#fC').disabled = false; $('#fS').disabled = false; };
+    $$('.word', box).forEach(w => w.onclick = () => { const i = +w.dataset.i; if (state === 'run') w.classList.toggle('err'); else if (state === 'stopped') { last = i; $$('.word', box).forEach(x => x.classList.toggle('last', +x.dataset.i === i)); } });
+    $('#fC').onclick = () => { const read = last + 1, errs = $$('.word.err', box).filter(w => +w.dataset.i <= last).length, ok = read - errs; d.wcpm = Math.round(ok / (Math.max(el, 1) / 60)); d.acc = read ? Math.round(ok / read * 100) : 0; d.date = new Date().toISOString(); next(); };
+  } else if (step === 'comp') {
+    const ans = d.compAns ? d.compAns.slice() : Array(6).fill(-1);
+    const orders = IMP_Q.map(() => shuffle([0, 1, 2]));
+    box.innerHTML = `<h2 class="sec">الفهم القرائي</h2><p class="muted">تقرأ الطالبة النص قراءة صامتة، ثم تجيب عن الأسئلة. لا تظهر الإجابات الصحيحة أثناء القياس.</p>
+     <div class="reader" style="margin-bottom:16px"><div class="story" style="--fs:24px">${esc(IMP_PASSAGE)}</div></div>
+     ${IMP_Q.map(([q, o], i) => `<div class="cq"><b>${i + 1}. ${q}</b><div class="opts">${orders[i].map(k => `<button class="opt" data-i="${i}" data-k="${k}">${o[k]}</button>`).join('')}</div></div>`).join('')}
+     <button class="btn" id="sv" style="margin-top:14px">حفظ والانتقال</button>`;
+    $$('.opt', box).forEach(b => b.onclick = () => { ans[+b.dataset.i] = +b.dataset.k; $$(`.opt[data-i="${b.dataset.i}"]`, box).forEach(x => x.classList.toggle('on', x === b)); });
+    $('#sv').onclick = () => { if (ans.some(x => x < 0)) { toast('بقيت أسئلة دون إجابة'); return; } d.compAns = ans; d.comp = ans.filter(x => x === 0).length; next(); };
+  } else if (step === 'dict') {
+    box.innerHTML = `<h2 class="sec">الإملاء</h2><p class="muted">تقرأ المعلمة النص على الطالبة جملةً جملة، وتكتبه الطالبة، ثم يُصحَّح آليًّا.</p>
+     <button class="btn ghost sm" id="sh">إظهار النص للمعلمة</button><div class="note hidden" id="tx" style="font:700 26px/2 Amiri;margin-top:10px">${IMP_DICT}</div>
+     <textarea class="dict" id="in" style="margin-top:12px">${esc(d.dictText || '')}</textarea><button class="btn" id="sv" style="margin-top:12px">تصحيح وحفظ</button>`;
+    $('#sh').onclick = () => $('#tx').classList.toggle('hidden');
+    $('#sv').onclick = () => { const t = $('#in').value.trim(); if (!t) { toast('لا يوجد نص مكتوب'); return; } d.dictText = t; d.dict = dictPct(IMP_DICT, t); toast('النتيجة: ' + d.dict + '%'); next(); };
+  } else {
+    const k = step, crit = IMP_RUB[k], v = d[k] ? d[k].slice() : Array(4).fill(0);
+    box.innerHTML = `<h2 class="sec">${k === 'khatt' ? 'الخط' : 'التحدث'}: تقدير المعلمة</h2><p class="muted">${k === 'khatt' ? 'تكتب الطالبة سطرًا في دفترها أو على لوح الكتابة، وتقدّره المعلمة.' : 'تتحدث الطالبة دقيقة واحدة في موضوع من منبر الخطابة، وتقدّره المعلمة.'}</p>
+     <table class="rub"><tr><th>المعيار</th>${RUB_LV.map((l, i) => `<th>${i + 1}<br><small>${l}</small></th>`).join('')}</tr>${crit.map((c, i) => `<tr><td>${c}</td>${[1, 2, 3, 4].map(n => `<td><button class="rb ${v[i] === n ? 'on' : ''}" data-i="${i}" data-n="${n}">${n}</button></td>`).join('')}</tr>`).join('')}</table>
+     <button class="btn" id="sv" style="margin-top:14px">حفظ ${idx === IMP_STEPS.length - 1 ? 'وإنهاء القياس' : 'والانتقال'}</button>`;
+    $$('.rb', box).forEach(b => b.onclick = () => { v[+b.dataset.i] = +b.dataset.n; $$(`.rb[data-i="${b.dataset.i}"]`, box).forEach(x => x.classList.toggle('on', x === b)); });
+    $('#sv').onclick = () => { if (v.some(x => !x)) { toast('بقيت معايير دون تقدير'); return; } d[k] = v; next(); };
+  }
+};
+
+/* لوحة النتائج */
+function mean(a) { return a.length ? a.reduce((s, x) => s + x, 0) / a.length : null; }
+function sd(a) { if (a.length < 2) return null; const m = mean(a); return Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / (a.length - 1)); }
+function impStats() {
+  return IMP_M.map(([k, name, max]) => {
+    const pairs = S.students.map(s => [impVal(s, 'pre', k), impVal(s, 'post', k)]).filter(([a, b]) => a != null && b != null);
+    const pre = S.students.map(s => impVal(s, 'pre', k)).filter(x => x != null), post = S.students.map(s => impVal(s, 'post', k)).filter(x => x != null);
+    const diffs = pairs.map(([a, b]) => b - a), sdd = sd(diffs);
+    return { k, name, max, nPre: pre.length, nPost: post.length, n: pairs.length, mPre: mean(pairs.map(p => p[0])), mPost: mean(pairs.map(p => p[1])), mDiff: mean(diffs), up: diffs.filter(x => x > 0).length, d: sdd ? mean(diffs) / sdd : null };
+  });
+}
+function dLabel(d) { if (d == null) return '—'; const a = Math.abs(d); return a < .2 ? 'ضئيل' : a < .5 ? 'صغير' : a < .8 ? 'متوسط' : 'كبير'; }
+const f1 = x => x == null ? '—' : (Math.round(x * 10) / 10).toString();
+const sg = x => x == null ? '—' : `<bdi dir="ltr">${x > 0 ? '+' : ''}${f1(x)}</bdi>`;
+const dCell = d => d == null ? '—' : `<bdi dir="ltr">${f1(d)}</bdi> <small class="muted">${dLabel(d)}</small>`;
+function impChart(stats) {
+  const rows = stats.filter(s => s.max && s.n);
+  if (!rows.length) return '<p class="muted">يظهر الرسم بعد اكتمال القياسين القبلي والبعدي لطالبة واحدة على الأقل.</p>';
+  return `<div class="ichart">${rows.map(s => { const p1 = s.mPre / s.max * 100, p2 = s.mPost / s.max * 100; return `<div class="icol"><div class="ibars"><div class="ib pre" style="height:${p1}%"><span>${Math.round(p1)}%</span></div><div class="ib post" style="height:${p2}%"><span>${Math.round(p2)}%</span></div></div><div class="ilab">${s.name.replace(' %', '')}</div></div>`; }).join('')}</div>
+   <div class="ileg"><span><i class="pre"></i>قبلي</span><span><i class="post"></i>بعدي</span></div>`;
+}
+function impactPanel(body) {
+  const stats = impStats(), done = ph => S.students.filter(s => IMP_STEPS.every(([k]) => stepDone(s, ph, k))).length;
+  const fl = stats.find(s => s.k === 'wcpm');
+  body.innerHTML = `<div class="kpis">
+     <div class="kpi"><b>${S.students.length}</b>عدد الطالبات</div>
+     <div class="kpi"><b>${done('pre')}</b>أكملن القياس القبلي</div>
+     <div class="kpi"><b>${done('post')}</b>أكملن القياس البعدي</div>
+     <div class="kpi"><b>${fl.n ? sg(fl.mDiff) : '—'}</b>متوسط التغيّر في الطلاقة (كلمة/دقيقة)</div></div>
+   <div class="card" style="margin-top:16px"><h2 class="sec">متوسط الفصل قبل وبعد</h2>${impChart(stats)}</div>
+   <div class="card" style="margin-top:16px;overflow:auto"><h2 class="sec">ملخص المهارات</h2>
+    <table><tr><th>المهارة</th><th>عدد الطالبات</th><th>المتوسط القبلي</th><th>المتوسط البعدي</th><th>متوسط التغيّر</th><th>تحسّنت</th><th>حجم الأثر d</th></tr>
+    ${stats.map(s => `<tr><td>${s.name}${s.max ? ` <small class="muted">(من ${s.max})</small>` : ''}</td><td>${s.n}</td><td>${f1(s.mPre)}</td><td>${f1(s.mPost)}</td><td class="${s.mDiff > 0 ? 'pos' : s.mDiff < 0 ? 'neg' : ''}">${sg(s.mDiff)}</td><td>${s.n ? `${s.up} من ${s.n}` : '—'}</td><td>${dCell(s.d)}</td></tr>`).join('')}</table>
+    <p class="muted" style="font-size:13px;line-height:1.9">المقارنة بين درجتي الطالبة نفسها قبل وبعد. حجم الأثر d = متوسط الفروق ÷ الانحراف المعياري للفروق، ويُفسَّر تقريبيًّا: 0.2 صغير، 0.5 متوسط، 0.8 كبير (Cohen, 1988). ولأن القياس لمجموعة واحدة دون مجموعة ضابطة، فالنتائج «تغيّر ملاحظ» أثناء التطبيق، ولا تثبت أن المنتج وحده سببه.</p></div>
+   <div class="card" style="margin-top:16px;overflow:auto"><h2 class="sec">نتائج الطالبات</h2>
+    <table class="itab"><tr><th>الطالبة</th>${IMP_M.map(([k, n]) => `<th>${n.replace(' (كلمة صحيحة/دقيقة)', '').replace(' %', '')}<br><small>قبل ← بعد</small></th>`).join('')}<th>القياس</th></tr>
+    ${S.students.map(s => `<tr><td>${esc(s.name)}</td>${IMP_M.map(([k]) => { const a = impVal(s, 'pre', k), b = impVal(s, 'post', k), df = a != null && b != null ? b - a : null; return `<td>${a ?? '—'} ← ${b ?? '—'}${df != null ? `<br><small class="${df > 0 ? 'pos' : df < 0 ? 'neg' : ''}">${sg(df)}</small>` : ''}</td>`; }).join('')}
+     <td style="white-space:nowrap"><a class="btn sm" href="#assess/${s.id}/pre/att">قبلي</a> <a class="btn ghost sm" href="#assess/${s.id}/post/att">بعدي</a></td></tr>`).join('') || `<tr><td colspan="9" class="muted">تُضاف الطالبات من تبويب «الطالبات».</td></tr>`}</table>
+    <br><button class="btn sm" id="iCsv">تنزيل النتائج (CSV)</button> <button class="btn gold sm" id="iRep">طباعة تقرير الأثر</button></div>`;
+  $('#iCsv').onclick = () => {
+    const head = ['الطالبة', ...IMP_M.flatMap(([, n]) => [n + ' قبلي', n + ' بعدي'])];
+    const lines = [head].concat(S.students.map(s => [s.name, ...IMP_M.flatMap(([k]) => [impVal(s, 'pre', k) ?? '', impVal(s, 'post', k) ?? ''])]));
+    download('نتائج-قياس-الأثر.csv', '﻿' + lines.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n'), 'text/csv');
+  };
+  $('#iRep').onclick = () => {
+    const set = S.settings;
+    $('#print').innerHTML = `<div class="irep"><h1>تقرير قياس الأثر: مملكة العربية</h1><p>${set.teacher ? 'المعلمة: ' + esc(set.teacher) + ' · ' : ''}${set.school ? esc(set.school) + ' · ' : ''}${hijri()}</p>
+      <h2>متوسط الفصل قبل وبعد</h2>${impChart(stats)}
+      <h2>ملخص المهارات</h2><table><tr><th>المهارة</th><th>العدد</th><th>قبلي</th><th>بعدي</th><th>التغيّر</th><th>تحسّنت</th><th>d</th></tr>${stats.map(s => `<tr><td>${s.name}</td><td>${s.n}</td><td>${f1(s.mPre)}</td><td>${f1(s.mPost)}</td><td>${sg(s.mDiff)}</td><td>${s.n ? s.up + ' من ' + s.n : '—'}</td><td>${dCell(s.d)}</td></tr>`).join('')}</table>
+      <p class="fn">تصميم القياس: قبلي وبعدي لمجموعة واحدة، والنتائج تمثل تغيّرًا ملاحظًا أثناء التطبيق. تفسير حجم الأثر وفق Cohen (1988). تصميم: Research by Eman</p></div>`;
+    if (IN_ARTIFACT) download('تقرير-قياس-الأثر.html', certsHTMLFile([]).replace('<div id="print"></div>', '<div id="print">' + $('#print').innerHTML + '</div>'), 'text/html'); else setTimeout(() => print(), 150);
+  };
+}
+
 /* ===== قلعة الإنجاز ===== */
 function ringSVG(p, color) {
   const l = levelOf(p), lo = LEVEL_AT[l], hi = LEVEL_AT[l + 1];
@@ -2217,11 +2416,12 @@ function downloadAllCerts(list) { printCertsMarkup(list); download('شهادات
 /* ===== لوحة المعلمة ===== */
 ROUTES.teacher = (app, tab = 'students') => {
   if (!TEACHER) { go('#home'); setTimeout(teacherGate, 50); return; }
-  const tabs = [['students', 'الطالبات'], ['track', 'المتابعة'], ['content', 'المحتوى'], ['settings', 'الإعدادات']];
+  const tabs = [['students', 'الطالبات'], ['impact', 'قياس الأثر'], ['track', 'المتابعة'], ['content', 'المحتوى'], ['settings', 'الإعدادات']];
   shell(app, '', { c1: '#3B2A6B', c2: '#7B4DFF', soft: '#7B4DFF', title: 'لوحة المعلمة', desc: 'إدارة الطالبات والمحتوى ومتابعة الإنجاز', icon: ISVG.lock, tabs, active: tab, base: 'teacher' }, () => { });
   const body = $('#body'); body.classList.add('tpanel');
   body.insertAdjacentHTML('beforebegin', `<div style="text-align:left;margin:-8px 0 10px"><button class="btn ghost sm" onclick="setTeacher(false);go('#home')">خروج من لوحة المعلمة</button></div>`);
-  if (tab === 'students') {
+  if (tab === 'impact') { impactPanel(body); }
+  else if (tab === 'students') {
     body.innerHTML = `<div class="row2"><div class="card"><h2 class="sec">إضافة طالبات</h2><label>الأسماء (اسم في كل سطر):</label><textarea id="names" placeholder="مثال:&#10;ريم&#10;لمى&#10;جود"></textarea><br><br><button class="btn" id="add">إضافة</button></div>
      <div class="card"><h2 class="sec">طريقة الاستعمال</h2><p class="lead" style="font-size:17px">تختار كل طالبة اسمها من الخريطة قبل أن تبدأ، فتُحفظ نقاطها في كل جزيرة. ويمكن منح نقاط إضافية بالأزرار + و −. تُحفظ البيانات على هذا الجهاز، ويُستحسن حفظ نسخة احتياطية من «الإعدادات» بين حين وآخر.</p></div></div>
      <div class="card" style="margin-top:16px;overflow:auto"><table><tr><th>الطالبة</th>${Object.values(ISLANDS).map(I => `<th>${I.icon} ${I.short}</th>`).join('')}<th>المجموع</th><th></th></tr>
