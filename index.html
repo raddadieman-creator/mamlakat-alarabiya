@@ -774,6 +774,9 @@ body{background:var(--bg);color:var(--ink)}
 .irep th,.irep td{border:1px solid #ddd;padding:6px;text-align:center}
 .irep .fn{font-size:11px;color:#666;margin-top:14px}
 @media print{.irep .ichart{height:200px}}
+
+.demo-banner{background:#FFF4D6;border:1px dashed #F08C00;color:#6B4A00;border-radius:16px;padding:12px 16px;margin-bottom:16px;line-height:1.9}
+.howto{margin:0;padding-inline-start:22px;line-height:2.1;font-size:16px}
 </style></head>
 <body><div id="app"></div><div id="print"></div>
 <script>/* ===== محتوى مملكة العربية ===== */
@@ -2314,10 +2317,10 @@ ROUTES.assess = (app, sid, ph = 'pre', step = 'att') => {
 /* لوحة النتائج */
 function mean(a) { return a.length ? a.reduce((s, x) => s + x, 0) / a.length : null; }
 function sd(a) { if (a.length < 2) return null; const m = mean(a); return Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / (a.length - 1)); }
-function impStats() {
+function impStats(list = S.students) {
   return IMP_M.map(([k, name, max]) => {
-    const pairs = S.students.map(s => [impVal(s, 'pre', k), impVal(s, 'post', k)]).filter(([a, b]) => a != null && b != null);
-    const pre = S.students.map(s => impVal(s, 'pre', k)).filter(x => x != null), post = S.students.map(s => impVal(s, 'post', k)).filter(x => x != null);
+    const pairs = list.map(s => [impVal(s, 'pre', k), impVal(s, 'post', k)]).filter(([a, b]) => a != null && b != null);
+    const pre = list.map(s => impVal(s, 'pre', k)).filter(x => x != null), post = list.map(s => impVal(s, 'post', k)).filter(x => x != null);
     const diffs = pairs.map(([a, b]) => b - a), sdd = sd(diffs);
     return { k, name, max, nPre: pre.length, nPost: post.length, n: pairs.length, mPre: mean(pairs.map(p => p[0])), mPost: mean(pairs.map(p => p[1])), mDiff: mean(diffs), up: diffs.filter(x => x > 0).length, d: sdd ? mean(diffs) / sdd : null };
   });
@@ -2332,11 +2335,11 @@ function impChart(stats) {
   return `<div class="ichart">${rows.map(s => { const p1 = s.mPre / s.max * 100, p2 = s.mPost / s.max * 100; return `<div class="icol"><div class="ibars"><div class="ib pre" style="height:${p1}%"><span>${Math.round(p1)}%</span></div><div class="ib post" style="height:${p2}%"><span>${Math.round(p2)}%</span></div></div><div class="ilab">${s.name.replace(' %', '')}</div></div>`; }).join('')}</div>
    <div class="ileg"><span><i class="pre"></i>قبلي</span><span><i class="post"></i>بعدي</span></div>`;
 }
-function impactPanel(body) {
-  const stats = impStats(), done = ph => S.students.filter(s => IMP_STEPS.every(([k]) => stepDone(s, ph, k))).length;
+function impactPanel(body, list = S.students, demo = false) {
+  const stats = impStats(list), done = ph => list.filter(s => IMP_STEPS.every(([k]) => stepDone(s, ph, k))).length;
   const fl = stats.find(s => s.k === 'wcpm');
   body.innerHTML = `<div class="kpis">
-     <div class="kpi"><b>${S.students.length}</b>عدد الطالبات</div>
+     <div class="kpi"><b>${list.length}</b>عدد الطالبات</div>
      <div class="kpi"><b>${done('pre')}</b>أكملن القياس القبلي</div>
      <div class="kpi"><b>${done('post')}</b>أكملن القياس البعدي</div>
      <div class="kpi"><b>${fl.n ? sg(fl.mDiff) : '—'}</b>متوسط التغيّر في الطلاقة (كلمة/دقيقة)</div></div>
@@ -2347,23 +2350,49 @@ function impactPanel(body) {
     <p class="muted" style="font-size:13px;line-height:1.9">المقارنة بين درجتي الطالبة نفسها قبل وبعد. حجم الأثر d = متوسط الفروق ÷ الانحراف المعياري للفروق، ويُفسَّر تقريبيًّا: 0.2 صغير، 0.5 متوسط، 0.8 كبير (Cohen, 1988). ولأن القياس لمجموعة واحدة دون مجموعة ضابطة، فالنتائج «تغيّر ملاحظ» أثناء التطبيق، ولا تثبت أن المنتج وحده سببه.</p></div>
    <div class="card" style="margin-top:16px;overflow:auto"><h2 class="sec">نتائج الطالبات</h2>
     <table class="itab"><tr><th>الطالبة</th>${IMP_M.map(([k, n]) => `<th>${n.replace(' (كلمة صحيحة/دقيقة)', '').replace(' %', '')}<br><small>قبل ← بعد</small></th>`).join('')}<th>القياس</th></tr>
-    ${S.students.map(s => `<tr><td>${esc(s.name)}</td>${IMP_M.map(([k]) => { const a = impVal(s, 'pre', k), b = impVal(s, 'post', k), df = a != null && b != null ? b - a : null; return `<td>${a ?? '—'} ← ${b ?? '—'}${df != null ? `<br><small class="${df > 0 ? 'pos' : df < 0 ? 'neg' : ''}">${sg(df)}</small>` : ''}</td>`; }).join('')}
-     <td style="white-space:nowrap"><a class="btn sm" href="#assess/${s.id}/pre/att">قبلي</a> <a class="btn ghost sm" href="#assess/${s.id}/post/att">بعدي</a></td></tr>`).join('') || `<tr><td colspan="9" class="muted">تُضاف الطالبات من تبويب «الطالبات».</td></tr>`}</table>
+    ${list.map(s => `<tr><td>${esc(s.name)}</td>${IMP_M.map(([k]) => { const a = impVal(s, 'pre', k), b = impVal(s, 'post', k), df = a != null && b != null ? b - a : null; return `<td>${a ?? '—'} ← ${b ?? '—'}${df != null ? `<br><small class="${df > 0 ? 'pos' : df < 0 ? 'neg' : ''}">${sg(df)}</small>` : ''}</td>`; }).join('')}
+     <td style="white-space:nowrap">${demo ? '<span class="muted">مثال</span>' : `<a class="btn sm" href="#assess/${s.id}/pre/att">قبلي</a> <a class="btn ghost sm" href="#assess/${s.id}/post/att">بعدي</a>`}</td></tr>`).join('') || `<tr><td colspan="9" class="muted">تُضاف الطالبات من تبويب «الطالبات».</td></tr>`}</table>
     <br><button class="btn sm" id="iCsv">تنزيل النتائج (CSV)</button> <button class="btn gold sm" id="iRep">طباعة تقرير الأثر</button></div>`;
   $('#iCsv').onclick = () => {
     const head = ['الطالبة', ...IMP_M.flatMap(([, n]) => [n + ' قبلي', n + ' بعدي'])];
-    const lines = [head].concat(S.students.map(s => [s.name, ...IMP_M.flatMap(([k]) => [impVal(s, 'pre', k) ?? '', impVal(s, 'post', k) ?? ''])]));
-    download('نتائج-قياس-الأثر.csv', '﻿' + lines.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n'), 'text/csv');
+    const lines = [head].concat(list.map(s => [s.name, ...IMP_M.flatMap(([k]) => [impVal(s, 'pre', k) ?? '', impVal(s, 'post', k) ?? ''])]));
+    download(demo ? 'نموذج-نتائج-قياس-الأثر.csv' : 'نتائج-قياس-الأثر.csv', '﻿' + lines.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n'), 'text/csv');
   };
   $('#iRep').onclick = () => {
     const set = S.settings;
-    $('#print').innerHTML = `<div class="irep"><h1>تقرير قياس الأثر: مملكة العربية</h1><p>${set.teacher ? 'المعلمة: ' + esc(set.teacher) + ' · ' : ''}${set.school ? esc(set.school) + ' · ' : ''}${hijri()}</p>
+    $('#print').innerHTML = `<div class="irep"><h1>${demo ? 'نموذج توضيحي: ' : ''}تقرير قياس الأثر: مملكة العربية</h1>${demo ? '<p><b>جميع البيانات في هذا التقرير افتراضية للتوضيح فقط.</b></p>' : ''}<p>${set.teacher ? 'المعلمة: ' + esc(set.teacher) + ' · ' : ''}${set.school ? esc(set.school) + ' · ' : ''}${hijri()}</p>
       <h2>متوسط الفصل قبل وبعد</h2>${impChart(stats)}
       <h2>ملخص المهارات</h2><table><tr><th>المهارة</th><th>العدد</th><th>قبلي</th><th>بعدي</th><th>التغيّر</th><th>تحسّنت</th><th>d</th></tr>${stats.map(s => `<tr><td>${s.name}</td><td>${s.n}</td><td>${f1(s.mPre)}</td><td>${f1(s.mPost)}</td><td>${sg(s.mDiff)}</td><td>${s.n ? s.up + ' من ' + s.n : '—'}</td><td>${dCell(s.d)}</td></tr>`).join('')}</table>
       <p class="fn">تصميم القياس: قبلي وبعدي لمجموعة واحدة، والنتائج تمثل تغيّرًا ملاحظًا أثناء التطبيق. تفسير حجم الأثر وفق Cohen (1988). تصميم: Research by Eman</p></div>`;
     if (IN_ARTIFACT) download('تقرير-قياس-الأثر.html', certsHTMLFile([]).replace('<div id="print"></div>', '<div id="print">' + $('#print').innerHTML + '</div>'), 'text/html'); else setTimeout(() => print(), 150);
   };
 }
+
+/* نموذج توضيحي ببيانات افتراضية */
+function demoStudents() {
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  const R = (a, b) => Math.round(a + rnd() * (b - a));
+  const names = ['طالبة 1', 'طالبة 2', 'طالبة 3', 'طالبة 4', 'طالبة 5', 'طالبة 6', 'طالبة 7', 'طالبة 8', 'طالبة 9', 'طالبة 10', 'طالبة 11', 'طالبة 12'];
+  return names.map((n, i) => {
+    const w = R(38, 72), g = R(-8, 18), a = R(78, 92), c = R(2, 4), d = R(48, 72);
+    const rub = (lo, hi) => [0, 0, 0, 0].map(() => R(lo, hi));
+    const kp = rub(1, 3), sp = rub(1, 3), at = [0, 0, 0, 0, 0, 0].map(() => R(1, 3));
+    return { id: 'demo' + i, name: n, impact: {
+      pre: { wcpm: w, acc: a, comp: c, dict: d, khatt: kp, speak: sp, att: at },
+      post: { wcpm: w + g, acc: Math.min(100, a + R(-5, 8)), comp: Math.max(0, Math.min(6, c + R(-1, 2))), dict: Math.min(100, d + R(-10, 18)), khatt: kp.map(x => Math.max(1, Math.min(4, x + R(-1, 1)))), speak: sp.map(x => Math.max(1, Math.min(4, x + R(-1, 1)))), att: at.map(x => Math.max(1, Math.min(3, x + R(-1, 1)))) } } };
+  });
+}
+ROUTES['impact-demo'] = app => {
+  shell(app, '', { c1: '#7B4DFF', c2: '#5A2FD6', soft: '#14B8A6', title: 'نموذج لوحة قياس الأثر', desc: 'مثال توضيحي لما تعرضه اللوحة بعد القياسين القبلي والبعدي', icon: ISVG.castle, wm: 'ق' }, () => { });
+  const body = $('#body'); body.classList.add('tpanel');
+  body.insertAdjacentHTML('beforebegin', `<div class="demo-banner"><b>بيانات افتراضية للتوضيح فقط.</b> الأرقام في هذه الصفحة مولّدة لشرح طريقة عرض النتائج، ولا تمثل طالبات حقيقيات. تظهر النتائج الفعلية في «لوحة المعلمة» ثم «قياس الأثر» بعد تطبيق القياس.</div>
+   <div class="card" style="margin-bottom:16px"><h2 class="sec">كيف تُقرأ اللوحة؟</h2>
+    <ol class="howto"><li><b>البطاقات العلوية:</b> عدد الطالبات، ومن أكملن القياسين، ومتوسط التحسن في سرعة القراءة.</li>
+    <li><b>الرسم البياني:</b> العمود الفاتح متوسط الفصل قبل استعمال المنتج، والعمود الداكن بعده، لكل مهارة.</li>
+    <li><b>ملخص المهارات:</b> متوسط التغيّر، وعدد الطالبات اللاتي تحسّنّ، وحجم الأثر (صغير، متوسط، كبير).</li>
+    <li><b>نتائج الطالبات:</b> درجة كل طالبة قبل وبعد، والتغيّر بالأخضر إن تحسّنت وبالأحمر إن تراجعت.</li></ol></div>`);
+  impactPanel(body, demoStudents(), true);
+};
 
 /* ===== قلعة الإنجاز ===== */
 function ringSVG(p, color) {
@@ -2420,7 +2449,7 @@ ROUTES.teacher = (app, tab = 'students') => {
   shell(app, '', { c1: '#3B2A6B', c2: '#7B4DFF', soft: '#7B4DFF', title: 'لوحة المعلمة', desc: 'إدارة الطالبات والمحتوى ومتابعة الإنجاز', icon: ISVG.lock, tabs, active: tab, base: 'teacher' }, () => { });
   const body = $('#body'); body.classList.add('tpanel');
   body.insertAdjacentHTML('beforebegin', `<div style="text-align:left;margin:-8px 0 10px"><button class="btn ghost sm" onclick="setTeacher(false);go('#home')">خروج من لوحة المعلمة</button></div>`);
-  if (tab === 'impact') { impactPanel(body); }
+  if (tab === 'impact') { impactPanel(body); body.insertAdjacentHTML('afterbegin', `<div style="margin-bottom:14px"><a class="pill-link" href="#impact-demo">عرض نموذج اللوحة ببيانات افتراضية</a></div>`); }
   else if (tab === 'students') {
     body.innerHTML = `<div class="row2"><div class="card"><h2 class="sec">إضافة طالبات</h2><label>الأسماء (اسم في كل سطر):</label><textarea id="names" placeholder="مثال:&#10;ريم&#10;لمى&#10;جود"></textarea><br><br><button class="btn" id="add">إضافة</button></div>
      <div class="card"><h2 class="sec">طريقة الاستعمال</h2><p class="lead" style="font-size:17px">تختار كل طالبة اسمها من الخريطة قبل أن تبدأ، فتُحفظ نقاطها في كل جزيرة. ويمكن منح نقاط إضافية بالأزرار + و −. تُحفظ البيانات على هذا الجهاز، ويُستحسن حفظ نسخة احتياطية من «الإعدادات» بين حين وآخر.</p></div></div>
