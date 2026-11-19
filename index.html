@@ -2549,7 +2549,11 @@ function certsHTMLFile(list) {
 }
 
 /* ===== التشغيل ===== */
-if ('serviceWorker' in navigator && /^https?:/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(() => { });
+if ('serviceWorker' in navigator && /^https?:/.test(location.protocol)) {
+  const hadCtl = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register('sw.js').then(r => r.update()).catch(() => { });
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadCtl && !window.__swReloaded) { window.__swReloaded = true; location.reload(); } });
+}
 document.fonts && document.fonts.ready.then(() => { });
 render();
 </script></body></html>
