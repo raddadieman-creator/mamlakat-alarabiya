@@ -777,8 +777,99 @@ body{background:var(--bg);color:var(--ink)}
 
 .demo-banner{background:#FFF4D6;border:1px dashed #F08C00;color:#6B4A00;border-radius:16px;padding:12px 16px;margin-bottom:16px;line-height:1.9}
 .howto{margin:0;padding-inline-start:22px;line-height:2.1;font-size:16px}
+/* ===== لوحة المعلمة: الحساب والفصول والنتائج ===== */
+.tbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-8px 0 14px}
+.tbar .sp,.ghead .sp,.crow .sp{flex:1}
+.tmail{font-size:14px}
+.cst{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--ui);color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.cst::before{content:"";width:9px;height:9px;border-radius:50%;background:#b9b3c8}
+.cst[data-s=ok]::before{background:#10B981}
+.cst[data-s=sync]::before{background:#F59E0B;animation:cstp 1s infinite alternate}
+.cst[data-s=err]::before{background:#E11D48}
+.cst[data-s=offline]::before{background:#94A3B8}
+.cst:empty{display:none}
+@keyframes cstp{to{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.cst[data-s=sync]::before{animation:none}}
+
+.cfilter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.cf{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 16px;font:700 15px var(--ui);cursor:pointer}
+.cf small{font-weight:500;color:var(--ink2);margin-inline-start:4px}
+.cf.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cf.on small{color:#d9d0ee}
+.cf:focus-visible,.gin:focus-visible,.xdrop:focus-within{outline:3px solid #B39BFF;outline-offset:2px}
+.cfilter.pk{justify-content:center;margin-bottom:12px}
+
+.clist{display:flex;flex-direction:column;margin-bottom:14px}
+.crow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.crow b{font:700 17px var(--ui)}
+.crow .muted{font-size:14px}
+.addc{display:flex;gap:8px}
+.addc input{flex:1;min-width:0}
+.addm{display:grid;grid-template-columns:1fr 220px;gap:16px;align-items:start}
+.addm textarea{min-height:120px}
+@media (max-width:640px){.addm{grid-template-columns:1fr}}
+.tpanel select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;font:500 15px var(--ui);background:#fff;color:var(--ink)}
+.tpanel select.mv{width:auto;min-width:120px;padding:6px 10px;font-size:14px}
+.btn.del{color:#B4233F}
+.tpanel td.acts{white-space:nowrap}
+.tpanel td.pmc{white-space:nowrap}
+
+.xdrop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:2px dashed #CDBEF7;border-radius:18px;padding:26px 14px;margin:6px 0 10px;cursor:pointer;background:#FBF9FF;text-align:center}
+.xdrop b{font:700 18px var(--ui);color:var(--pri)}
+.xdrop small{color:var(--ink2);font-size:14px}
+.xdrop.over{background:#F1EBFF;border-color:var(--pri)}
+.xprev{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.xprev label{display:block;margin-top:6px}
+.xprev input[type=text]{margin-top:8px}
+.tpanel .xt{margin:12px 0;font-size:15px}
+.amsg{min-height:1.4em;font-size:15px;margin-top:10px}
+.amsg.ok{color:#0E8F82}
+.amsg.bad{color:#B4233F}
+.alinks{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px;font-size:15px}
+.alinks a{color:var(--pri)}
+.auth input{direction:inherit}
+.auth input[dir=ltr]{text-align:left}
+
+.kpi small{display:block;margin-top:2px;color:var(--pri);font-weight:700}
+.kpi .kd{color:#c9bfe2;font-weight:500}
+.card.empty{text-align:center;padding:40px 20px}
+.card.empty p{max-width:52ch;margin:10px auto 18px}
+.hbars{display:flex;flex-direction:column;gap:14px;margin:6px 0 14px}
+.hb,.lv{display:grid;grid-template-columns:74px 1fr 52px;align-items:center;gap:10px}
+.lv{grid-template-columns:74px 1fr}
+.hl{font:700 15px var(--ui);color:var(--ink)}
+.ht{height:18px;background:#F3EEFB;border-radius:999px;overflow:hidden}
+.ht i{display:block;height:100%;border-radius:999px}
+.hb b{font:800 17px var(--ui);text-align:left}
+.lvbar{display:flex;height:24px;border-radius:8px;overflow:hidden;background:#F3EEFB;gap:2px}
+.lvbar i{display:grid;place-items:center;font:700 12px var(--ui);color:#2A1B4A;font-style:normal;min-width:18px}
+.lvk{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--ink2);margin:6px 0 16px 0;padding-inline-start:84px}
+.lvk i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px;vertical-align:middle}
+@media (max-width:640px){.lvk{padding-inline-start:0}}
+.tpanel .cmp a{color:var(--pri);font-weight:700}
+.toplist{margin:0;padding:0 1.2em 0 0}
+.toplist li{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line);font-size:16px}
+.toplist b{font:800 18px var(--ui);color:var(--pri)}
+.chip.sm{font:500 14px var(--ui);padding:5px 12px;background:#F3EEFB}
+.dsec{margin:34px 0 10px;font-size:30px}
+
+.ghead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:#fff}
+.seg button{border:0;background:transparent;border-radius:999px;padding:8px 18px;font:700 15px var(--ui);color:var(--ink2);cursor:pointer}
+.seg button.on{background:var(--pri);color:#fff}
+.gtab th small{font-weight:500;color:var(--ink2)}
+.gin{width:76px;padding:8px 6px;border:1px solid var(--line);border-radius:10px;text-align:center;font:700 16px var(--ui);background:#fff;color:var(--ink)}
+.gin.bad{border-color:#E11D48;background:#FFF1F3}
+.gin.ok{border-color:#10B981;background:#ECFDF5;transition:background .4s}
+.gin::-webkit-inner-spin-button{opacity:.4}
+.acard p{margin:6px 0}
+.tpanel input[type=email]{width:100%;border:2px solid #e8dfd0;border-radius:14px;padding:10px 12px;font:500 17px var(--ui);direction:ltr;text-align:left}
+.tpanel input[type=password][dir=ltr]{direction:ltr;text-align:left;font-family:var(--ui)}
+.tpanel label.xdrop{display:flex;margin:6px 0 10px;font-weight:500}
+@media (max-width:520px){.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi{padding:12px}.kpi b{font-size:28px}}
 </style></head>
 <body><div id="app"></div><div id="print"></div>
+<script src="vendor/supabase.js"></script>
 <script>/* ===== محتوى مملكة العربية ===== */
 const LETTERS = [
   {l:'ا', n:'ألف', c:false, w:['أرنب','باب','عصا']},
@@ -1190,16 +1281,17 @@ const NET_NOTE = '<div class="note" style="margin-bottom:14px">هذه الموا
 const KEY = 'arabiya-kingdom-v1';
 let S = {};
 try { S = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { S = {}; }
-S = Object.assign({ settings: { pin: '1234', teacher: '', school: '' }, students: [], cur: null, stories: [], dicts: [], audio: {} }, S);
+S = Object.assign({ settings: { pin: '1234', teacher: '', school: '' }, students: [], classes: [], cur: null, stories: [], dicts: [], audio: {} }, S);
 S.settings = Object.assign({ pin: '1234', teacher: '', school: '' }, S.settings);
-function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } }
+function _saveLocal() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } }
+function save() { _saveLocal(); }
 let TEACHER = false;
 try { TEACHER = sessionStorage.getItem('ak-t') === '1'; } catch (e) { }
 function setTeacher(v) { TEACHER = v; try { sessionStorage.setItem('ak-t', v ? '1' : '0'); } catch (e) { } }
 
 const AVATARS = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 function me() { return S.students.find(s => s.id === S.cur) || null; }
-function newStudent(name) { return { id: 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, av: AVATARS[S.students.length % AVATARS.length], pts: { khatt: 0, imla: 0, read: 0, speak: 0 }, done: {}, flu: [], recs: [] }; }
+function newStudent(name, cls = '') { return { id: 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10), name, cls, av: AVATARS[S.students.length % AVATARS.length], pts: { khatt: 0, imla: 0, read: 0, speak: 0 }, done: {}, flu: [], recs: [] }; }
 function total(st) { return Object.values(st.pts).reduce((a, b) => a + b, 0); }
 function levelOf(p) { let l = 0; LEVEL_AT.forEach((t, i) => { if (p >= t) l = i; }); return l; }
 
@@ -1354,21 +1446,30 @@ function islandPage(app, key, tabs, active, fill) {
 }
 
 /* ===== اختيار الطالبة ===== */
-function pickStudent(after) {
-  const list = S.students;
+function pickStudent(after, cls) {
+  const C = S.classes || [];
+  if (cls === undefined && C.length > 1) cls = C.some(c => c.id === S.curCls) ? S.curCls : C[0].id;
+  const list = C.length > 1 ? S.students.filter(s => (s.cls || '') === (cls || '')) : S.students;
+  const noCls = C.length > 1 && S.students.some(s => !s.cls);
   modal(`<h2>اختيار الطالبة</h2>
-   ${list.length ? `<div class="slist">${list.map(s => `<button class="sbtn" data-id="${s.id}">${esc(s.name)}</button>`).join('')}</div>` : `<p class="muted lead">لم تُضف أسماء الطالبات بعد، وتُضاف من لوحة المعلمة.</p>`}
+   ${C.length > 1 ? `<div class="cfilter pk">${C.map(c => `<button class="cf ${c.id === cls ? 'on' : ''}" data-c="${c.id}">${esc(c.name)}</button>`).join('')}${noCls ? `<button class="cf ${cls === '' ? 'on' : ''}" data-c="">دون فصل</button>` : ''}</div>` : ''}
+   ${list.length ? `<div class="slist">${list.map(s => `<button class="sbtn" data-id="${s.id}">${esc(s.name)}</button>`).join('')}</div>` : `<p class="muted lead">${S.students.length ? 'لا توجد أسماء في هذا الفصل.' : 'لم تُضف أسماء الطالبات بعد، وتُضاف من لوحة المعلمة.'}</p>`}
    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px">
     <button class="btn ghost" id="guest">متابعة دون اسم</button>
     <button class="btn ghost" id="tch">لوحة المعلمة</button>
    </div>`);
-  $$('.sbtn').forEach(b => b.onclick = () => { S.cur = b.dataset.id; save(); closeModal(); warnedGuest = false; after ? after() : render(); });
-  $('#guest').onclick = () => { S.cur = null; save(); closeModal(); after ? after() : render(); };
+  $$('.cf[data-c]').forEach(b => b.onclick = () => { S.curCls = b.dataset.c; _saveLocal(); pickStudent(after, b.dataset.c); });
+  $$('.sbtn').forEach(b => b.onclick = () => { S.cur = b.dataset.id; _saveLocal(); closeModal(); warnedGuest = false; after ? after() : render(); });
+  $('#guest').onclick = () => { S.cur = null; _saveLocal(); closeModal(); after ? after() : render(); };
   $('#tch').onclick = () => teacherGate();
 }
 function teacherGate() {
   if (TEACHER) { go('#teacher'); return; }
-  modal(`<h2>دخول المعلمة</h2><p class="muted">الرمز السري (الرمز الافتراضي 1234، ويمكن تغييره من الإعدادات).</p>
+  if (typeof CLOUD !== 'undefined' && CLOUD.sb && !CLOUD.user) { authModal(); return; }
+  pinModal();
+}
+function pinModal() {
+  modal(`<h2>دخول المعلمة</h2><p class="muted">الرمز السري للوحة على هذا الجهاز (الرمز الافتراضي 1234، ويمكن تغييره من الإعدادات).</p>
    <div class="tpanel"><input type="password" id="pin" inputmode="numeric" placeholder="الرمز"></div>
    <div style="margin-top:14px;display:flex;gap:10px"><button class="btn" id="ok">دخول</button><button class="btn ghost" onclick="closeModal()">إلغاء</button></div>`);
   const f = () => { if ($('#pin').value === S.settings.pin) { setTeacher(true); closeModal(); go('#teacher'); } else { toast('الرمز غير صحيح'); } };
@@ -1376,6 +1477,308 @@ function teacherGate() {
 }
 function fullscreen() { const d = document.documentElement; if (!document.fullscreenElement) d.requestFullscreen && d.requestFullscreen().catch(() => { }); else document.exitFullscreen(); }
 
+
+/* ===== الحفظ في الحساب (Supabase) =====
+   تبقى البيانات محفوظة على الجهاز للعمل دون إنترنت، وتُرسَل التغييرات إلى الحساب عند توفر الاتصال. */
+const SB_URL = 'https://utmmphpodgmykqwkraco.supabase.co';
+const SB_KEY = 'sb_publishable_ZnCWf5D1qsK_RM-AJ4U89w_tavtcb3C';
+S.classes = S.classes || [];
+const CLOUD = { sb: null, user: null, timer: 0, busy: false, state: 'off', last: null, pulled: 0, sy: { st: {}, cl: {}, t: '' } };
+try {
+  if (window.supabase && /^https?:/.test(location.protocol))
+    CLOUD.sb = supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true, storageKey: 'ak-auth', flowType: 'pkce', detectSessionInUrl: true } });
+} catch (e) { CLOUD.sb = null; }
+
+// ترتيب ثابت للمفاتيح حتى تتطابق المقارنة بين نسخة الجهاز ونسخة الخادم
+const H = o => JSON.stringify(o, (k, v) => v && typeof v === 'object' && !Array.isArray(v) ? Object.keys(v).sort().reduce((a, x) => (a[x] = v[x], a), {}) : v);
+const syKey = () => 'ak-sync-' + (CLOUD.user ? CLOUD.user.id : '');
+function sySave() { try { localStorage.setItem(syKey(), JSON.stringify(CLOUD.sy)); } catch (e) { } }
+function syLoad() { try { CLOUD.sy = Object.assign({ st: {}, cl: {}, t: '' }, JSON.parse(localStorage.getItem(syKey())) || {}); } catch (e) { CLOUD.sy = { st: {}, cl: {}, t: '' }; } }
+
+function stRow(s) { const { id, name, cls, ...data } = s; return { id, name, class_id: cls || null, data }; }
+function rowSt(r) { const d = r.data || {}; return Object.assign({ pts: { khatt: 0, imla: 0, read: 0, speak: 0 }, done: {}, flu: [], recs: [] }, d, { id: r.id, name: r.name, cls: r.class_id || '' }); }
+const clRow = c => ({ id: c.id, name: c.name, sort: c.sort || 0 });
+const tRow = () => ({ name: S.settings.teacher || '', school: S.settings.school || '', pin: S.settings.pin || '1234', stories: S.stories || [], dicts: S.dicts || [] });
+
+const _localSave = save;
+save = function () { _localSave(); if (CLOUD.user) cloudQueue(); };
+function cloudQueue(ms = 900) { clearTimeout(CLOUD.timer); CLOUD.timer = setTimeout(cloudFlush, ms); }
+
+function setCloudState(s) {
+  CLOUD.state = s;
+  const el = document.getElementById('cloudSt'); if (!el) return;
+  const t = { ok: 'محفوظ في الحساب' + (CLOUD.last ? ' · ' + CLOUD.last.toLocaleTimeString('ar', { hour: 'numeric', minute: '2-digit' }) : ''), sync: 'جارٍ الحفظ في الحساب', offline: 'دون اتصال: تُحفظ التغييرات على الجهاز وتُرسل عند عودة الاتصال', err: 'تعذّر الحفظ في الحساب، وستُعاد المحاولة تلقائيًّا', off: 'غير مرتبط بحساب: البيانات على هذا الجهاز فقط' }[s] || '';
+  el.textContent = t; el.dataset.s = s;
+}
+
+async function cloudFlush() {
+  if (!CLOUD.user) return;
+  if (CLOUD.busy) { cloudQueue(1500); return; }
+  if (!navigator.onLine) { setCloudState('offline'); return; }
+  CLOUD.busy = true; setCloudState('sync');
+  const sb = CLOUD.sb, uid = CLOUD.user.id, sy = CLOUD.sy;
+  try {
+    const cls = S.classes.map(c => Object.assign(clRow(c), { teacher_id: uid }));
+    const clUp = cls.filter(c => sy.cl[c.id] !== H(c));
+    if (clUp.length) { const { error } = await sb.from('classes').upsert(clUp); if (error) throw error; clUp.forEach(c => sy.cl[c.id] = H(c)); }
+    const rows = S.students.map(s => Object.assign(stRow(s), { teacher_id: uid }));
+    const up = rows.filter(r => sy.st[r.id] !== H(r));
+    for (let i = 0; i < up.length; i += 150) {
+      const ch = up.slice(i, i + 150);
+      const { error } = await sb.from('students').upsert(ch); if (error) throw error;
+      ch.forEach(r => sy.st[r.id] = H(r));
+    }
+    const ids = new Set(S.students.map(s => s.id));
+    const del = Object.keys(sy.st).filter(id => !ids.has(id));
+    if (del.length) { const { error } = await sb.from('students').delete().in('id', del); if (error) throw error; del.forEach(id => delete sy.st[id]); }
+    const cids = new Set(S.classes.map(c => c.id));
+    const cdel = Object.keys(sy.cl).filter(id => !cids.has(id));
+    if (cdel.length) { const { error } = await sb.from('classes').delete().in('id', cdel); if (error) throw error; cdel.forEach(id => delete sy.cl[id]); }
+    const t = tRow();
+    if (sy.t !== H(t)) { const { error } = await sb.from('teachers').upsert(Object.assign({ id: uid }, t)); if (error) throw error; sy.t = H(t); }
+    sySave(); CLOUD.last = new Date(); setCloudState('ok');
+  } catch (e) {
+    console.warn('cloud flush', e); sySave(); setCloudState(navigator.onLine ? 'err' : 'offline');
+    setTimeout(() => cloudQueue(0), 20000);
+  } finally { CLOUD.busy = false; }
+}
+
+// جلب بيانات الحساب ودمجها مع ما على الجهاز: التعديلات المحلية التي لم تُرسل بعد تبقى كما هي
+async function cloudPull(rerender = true) {
+  if (!CLOUD.user || CLOUD.busy || !navigator.onLine) return;
+  CLOUD.busy = true; setCloudState('sync');
+  const sb = CLOUD.sb, uid = CLOUD.user.id, sy = CLOUD.sy;
+  try {
+    const [t, c, s] = await Promise.all([
+      sb.from('teachers').select('name,school,pin,stories,dicts').eq('id', uid).maybeSingle(),
+      sb.from('classes').select('id,name,sort,teacher_id').order('sort').order('created_at'),
+      sb.from('students').select('id,name,class_id,data,teacher_id').order('created_at').limit(5000)
+    ]);
+    for (const r of [t, c, s]) if (r.error) throw r.error;
+    const before = H([S.students, S.classes, tRow()]);
+    // الفصول
+    const lc = new Map(S.classes.map(x => [x.id, x])), nc = [];
+    for (const r of c.data) {
+      const loc = lc.get(r.id), lh = loc ? H(Object.assign(clRow(loc), { teacher_id: uid })) : null;
+      if (loc && lh !== sy.cl[r.id]) nc.push(loc); else { nc.push({ id: r.id, name: r.name, sort: r.sort }); sy.cl[r.id] = H(r); }
+      lc.delete(r.id);
+    }
+    for (const [id, loc] of lc) if (!sy.cl[id]) nc.push(loc); else delete sy.cl[id];
+    S.classes = nc;
+    // الطالبات
+    const ls = new Map(S.students.map(x => [x.id, x])), ns = [];
+    for (const r of s.data) {
+      const loc = ls.get(r.id), lh = loc ? H(Object.assign(stRow(loc), { teacher_id: uid })) : null;
+      if (loc && lh !== sy.st[r.id]) ns.push(loc); else { ns.push(rowSt(r)); sy.st[r.id] = H(r); }
+      ls.delete(r.id);
+    }
+    for (const [id, loc] of ls) if (!sy.st[id]) ns.push(loc); else delete sy.st[id];
+    S.students = ns;
+    // بيانات المعلمة والمحتوى
+    if (t.data) {
+      const d = t.data, srvEmpty = !d.name && !d.school && !(d.stories || []).length && !(d.dicts || []).length;
+      const take = sy.t ? H(tRow()) === sy.t : !srvEmpty;
+      if (take) {
+        S.settings.teacher = d.name || ''; S.settings.school = d.school || ''; S.settings.pin = d.pin || '1234';
+        S.stories = d.stories || []; S.dicts = d.dicts || []; sy.t = H(tRow());
+      }
+    }
+    if (S.cur && !S.students.some(x => x.id === S.cur)) S.cur = null;
+    _localSave(); sySave(); CLOUD.pulled = Date.now();
+    CLOUD.busy = false;
+    const changed = before !== H([S.students, S.classes, tRow()]);
+    cloudQueue(50);
+    if (rerender && changed && /^#?(teacher|castle|home|splash|map)?(\/|$)/.test(location.hash.replace(/^#/, '') + '')) render();
+    return changed;
+  } catch (e) { console.warn('cloud pull', e); setCloudState('err'); }
+  finally { CLOUD.busy = false; }
+}
+
+async function cloudStart(user) {
+  CLOUD.user = user; syLoad();
+  await cloudPull(true);
+}
+function cloudStop() { CLOUD.user = null; setCloudState('off'); }
+
+if (CLOUD.sb) {
+  CLOUD.sb.auth.onAuthStateChange((ev, session) => {
+    if (ev === 'PASSWORD_RECOVERY') { setTimeout(newPasswordModal, 300); }
+    const u = session && session.user;
+    if (u && (!CLOUD.user || CLOUD.user.id !== u.id)) { setTimeout(() => cloudStart(u), 0); }
+    else if (!u && CLOUD.user) cloudStop();
+    if (/[?&]code=/.test(location.search)) history.replaceState(null, '', location.pathname + location.hash);
+  });
+  addEventListener('online', () => CLOUD.user && cloudQueue(0));
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && CLOUD.user && Date.now() - CLOUD.pulled > 60000) cloudPull(true);
+    if (document.visibilityState === 'hidden' && CLOUD.user) cloudFlush();
+  });
+}
+
+/* ===== نوافذ الحساب ===== */
+const AUTH_ERR = m => /Invalid login/i.test(m) ? 'البريد أو كلمة المرور غير صحيحة' : /Email not confirmed/i.test(m) ? 'لم يُفعَّل الحساب بعد، ورابط التفعيل في البريد الإلكتروني' : /already registered|already exists/i.test(m) ? 'هذا البريد مسجّل مسبقًا، ويمكن الدخول به مباشرة' : /Password should be|at least/i.test(m) ? 'كلمة المرور قصيرة، ويلزم ستة أحرف على الأقل' : /rate limit|too many/i.test(m) ? 'محاولات كثيرة، ويمكن المحاولة بعد قليل' : /fetch|network/i.test(m) ? 'لا يوجد اتصال بالإنترنت' : m;
+function authModal(mode = 'in') {
+  if (!CLOUD.sb) { pinModal(); return; }
+  const up = mode === 'up';
+  modal(`<h2>${up ? 'إنشاء حساب للمعلمة' : 'دخول المعلمة'}</h2>
+   <p class="muted" style="font-size:15px">${up ? 'يحفظ الحساب الفصول والطالبات والنتائج، ويتيح فتحها من أي جهاز.' : 'تُحفظ الفصول والطالبات والنتائج في الحساب، وتظهر على أي جهاز يُدخَل منه.'}</p>
+   <div class="tpanel auth">
+    ${up ? '<label>اسم المعلمة</label><input type="text" id="aN" autocomplete="name">' : ''}
+    <label>البريد الإلكتروني</label><input type="email" id="aE" dir="ltr" autocomplete="email" inputmode="email">
+    <label>كلمة المرور</label><input type="password" id="aP" dir="ltr" autocomplete="${up ? 'new-password' : 'current-password'}" placeholder="${up ? 'ستة أحرف على الأقل' : ''}">
+    <div id="aMsg" class="amsg" role="status"></div>
+   </div>
+   <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="aGo">${up ? 'إنشاء الحساب' : 'دخول'}</button><button class="btn ghost" onclick="closeModal()">إلغاء</button></div>
+   <div class="alinks">${up ? '<a href="javascript:void 0" id="aSw">لديّ حساب: الدخول</a>' : '<a href="javascript:void 0" id="aSw">إنشاء حساب جديد</a> <a href="javascript:void 0" id="aFg">نسيت كلمة المرور</a>'}
+    <a href="javascript:void 0" id="aLoc">الاستعمال على هذا الجهاز فقط</a></div>`);
+  const msg = (t, ok) => { const m = $('#aMsg'); m.textContent = t; m.className = 'amsg ' + (ok ? 'ok' : 'bad'); };
+  $('#aSw').onclick = () => authModal(up ? 'in' : 'up');
+  $('#aLoc').onclick = () => pinModal();
+  $('#aFg') && ($('#aFg').onclick = async () => {
+    const e = $('#aE').value.trim(); if (!e) { msg('يُكتب البريد الإلكتروني أولًا'); return; }
+    const { error } = await CLOUD.sb.auth.resetPasswordForEmail(e, { redirectTo: location.origin + location.pathname });
+    error ? msg(AUTH_ERR(error.message)) : msg('أُرسل رابط تعيين كلمة المرور إلى البريد', true);
+  });
+  const goF = async () => {
+    const e = $('#aE').value.trim(), p = $('#aP').value; if (!e || !p) { msg('يلزم البريد وكلمة المرور'); return; }
+    const b = $('#aGo'); b.disabled = true;
+    try {
+      if (up) {
+        const n = $('#aN').value.trim();
+        const { data, error } = await CLOUD.sb.auth.signUp({ email: e, password: p, options: { data: { name: n }, emailRedirectTo: location.origin + location.pathname } });
+        if (error) throw error;
+        if (n) { S.settings.teacher = n; _localSave(); }
+        if (data.session) { setTeacher(true); closeModal(); toast('أُنشئ الحساب ✔'); go('#teacher'); }
+        else msg('أُنشئ الحساب، وأُرسل رابط التفعيل إلى البريد. بعد الضغط عليه يُدخَل بالبريد وكلمة المرور.', true);
+      } else {
+        const { error } = await CLOUD.sb.auth.signInWithPassword({ email: e, password: p });
+        if (error) throw error;
+        setTeacher(true); closeModal(); toast('تم الدخول ✔'); go('#teacher');
+      }
+    } catch (x) { msg(AUTH_ERR(x.message || String(x))); }
+    finally { b.disabled = false; }
+  };
+  $('#aGo').onclick = goF; $('#aP').onkeydown = ev => ev.key === 'Enter' && goF();
+  setTimeout(() => ($('#aN') || $('#aE')).focus(), 50);
+}
+function newPasswordModal() {
+  modal(`<h2>كلمة مرور جديدة</h2><div class="tpanel"><input type="password" id="nP" dir="ltr" placeholder="ستة أحرف على الأقل"><div id="aMsg" class="amsg"></div></div>
+   <div style="margin-top:14px"><button class="btn" id="nGo">حفظ كلمة المرور</button></div>`);
+  $('#nGo').onclick = async () => {
+    const { error } = await CLOUD.sb.auth.updateUser({ password: $('#nP').value });
+    if (error) { $('#aMsg').textContent = AUTH_ERR(error.message); $('#aMsg').className = 'amsg bad'; return; }
+    closeModal(); setTeacher(true); toast('حُفظت كلمة المرور ✔'); go('#teacher');
+  };
+}
+async function cloudSignOut() {
+  if (!confirm('سيُسجَّل الخروج من الحساب على هذا الجهاز، وتبقى البيانات محفوظة في الحساب. هل تريدين المتابعة؟')) return;
+  await cloudFlush();
+  try { await CLOUD.sb.auth.signOut(); } catch (e) { }
+  try { localStorage.removeItem(syKey()); } catch (e) { }
+  cloudStop();
+  S.students = []; S.classes = []; S.stories = []; S.dicts = []; S.cur = null; _localSave();
+  setTeacher(false); go('#home'); toast('تم تسجيل الخروج');
+}
+
+/* ===== قراءة ملفات Excel (xlsx) وCSV داخل المتصفح دون مكتبات خارجية ===== */
+async function unzipEntries(buf) {
+  const dv = new DataView(buf), u8 = new Uint8Array(buf), dec = new TextDecoder();
+  let e = buf.byteLength - 22; while (e >= 0 && dv.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) throw new Error('zip');
+  const n = dv.getUint16(e + 10, true); let p = dv.getUint32(e + 16, true);
+  const files = {};
+  for (let i = 0; i < n; i++) {
+    if (dv.getUint32(p, true) !== 0x02014b50) break;
+    const method = dv.getUint16(p + 10, true), csize = dv.getUint32(p + 20, true), nl = dv.getUint16(p + 28, true), xl = dv.getUint16(p + 30, true), cl = dv.getUint16(p + 32, true), off = dv.getUint32(p + 42, true);
+    files[dec.decode(u8.subarray(p + 46, p + 46 + nl))] = { method, csize, off };
+    p += 46 + nl + xl + cl;
+  }
+  return async name => {
+    const f = files[name]; if (!f) return null;
+    const st = f.off + 30 + dv.getUint16(f.off + 26, true) + dv.getUint16(f.off + 28, true);
+    const data = u8.subarray(st, st + f.csize);
+    if (f.method === 0) return dec.decode(data);
+    if (typeof DecompressionStream === 'undefined') throw new Error('nodecomp');
+    const out = await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer();
+    return dec.decode(out);
+  };
+}
+const xmlDoc = s => new DOMParser().parseFromString(s, 'application/xml');
+const tagsNS = (el, n) => [...el.getElementsByTagNameNS('*', n)];
+const colIdx = ref => { const m = /^[A-Z]+/.exec(ref || ''); return m ? [...m[0]].reduce((a, ch) => a * 26 + ch.charCodeAt(0) - 64, 0) - 1 : -1; };
+async function readXlsx(buf) {
+  const get = await unzipEntries(buf);
+  let sheet = 'xl/worksheets/sheet1.xml';
+  const wb = await get('xl/workbook.xml'), rels = await get('xl/_rels/workbook.xml.rels');
+  if (wb && rels) {
+    const s1 = tagsNS(xmlDoc(wb), 'sheet')[0];
+    const rid = s1 && (s1.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships', 'id') || s1.getAttribute('r:id'));
+    const rel = tagsNS(xmlDoc(rels), 'Relationship').find(r => r.getAttribute('Id') === rid);
+    if (rel) { const t = rel.getAttribute('Target'); sheet = t.startsWith('/') ? t.slice(1) : 'xl/' + t.replace(/^\.\//, ''); }
+  }
+  const ssx = await get('xl/sharedStrings.xml');
+  const ss = ssx ? tagsNS(xmlDoc(ssx), 'si').map(si => tagsNS(si, 't').filter(t => !t.closest || !t.parentNode || t.parentNode.localName !== 'rPh').map(t => t.textContent).join('')) : [];
+  const sx = await get(sheet); if (!sx) throw new Error('sheet');
+  const rows = [];
+  for (const r of tagsNS(xmlDoc(sx), 'row')) {
+    const row = [];
+    for (const c of tagsNS(r, 'c')) {
+      const t = c.getAttribute('t'), v = tagsNS(c, 'v')[0];
+      let val = t === 's' ? ss[+(v && v.textContent)] : t === 'inlineStr' ? tagsNS(c, 't').map(x => x.textContent).join('') : v ? v.textContent : '';
+      const ci = colIdx(c.getAttribute('r'));
+      row[ci >= 0 ? ci : row.length] = String(val ?? '').trim();
+    }
+    rows.push(Array.from(row, x => x ?? ''));
+  }
+  return rows;
+}
+function readCSV(text) {
+  text = text.replace(/^﻿/, '');
+  const first = text.split(/\r?\n/)[0] || '';
+  const sep = [',', ';', '\t', '،'].sort((a, b) => first.split(b).length - first.split(a).length)[0];
+  const rows = []; let row = [], cur = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) { if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === sep) { row.push(cur.trim()); cur = ''; }
+    else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cur.trim()); rows.push(row); row = []; cur = ''; }
+    else cur += ch;
+  }
+  if (cur || row.length) { row.push(cur.trim()); rows.push(row); }
+  return rows;
+}
+async function readSheetFile(file) {
+  const buf = await file.arrayBuffer();
+  const u8 = new Uint8Array(buf.slice(0, 4));
+  if (u8[0] === 0x50 && u8[1] === 0x4b) return readXlsx(buf);
+  if (u8[0] === 0xD0 && u8[1] === 0xCF) throw new Error('xls');
+  let txt = new TextDecoder('utf-8').decode(buf);
+  if (/�/.test(txt)) { try { txt = new TextDecoder('windows-1256').decode(buf); } catch (e) { } }
+  return readCSV(txt);
+}
+// تحديد عمودي الاسم والفصل من صف العناوين، وإلا فالعمود الأول للاسم والثاني للفصل
+function mapRoster(rows) {
+  rows = rows.filter(r => r.some(x => String(x).trim()));
+  if (!rows.length) return { list: [], nameCol: 0, clsCol: -1, header: false };
+  const h = rows[0].map(x => String(x).replace(/\s+/g, ' ').trim());
+  let nameCol = h.findIndex(x => /اسم|الطالب|name/i.test(x));
+  let clsCol = h.findIndex((x, i) => i !== nameCol && /فصل|الصف|شعب|class|section/i.test(x));
+  const header = nameCol >= 0 || clsCol >= 0;
+  if (nameCol < 0) nameCol = clsCol === 0 ? 1 : 0;
+  if (!header && rows[0].length > 1) clsCol = nameCol === 0 ? 1 : 0;
+  const body = header ? rows.slice(1) : rows;
+  const list = body.map(r => ({ name: String(r[nameCol] ?? '').replace(/\s+/g, ' ').trim(), cls: clsCol >= 0 ? String(r[clsCol] ?? '').replace(/\s+/g, ' ').trim() : '' }))
+    .filter(x => x.name && !/^\d+$/.test(x.name));
+  return { list, nameCol, clsCol, header, cols: h };
+}
+const newId = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+function classByName(name) {
+  name = String(name || '').trim(); if (!name) return '';
+  let c = S.classes.find(x => x.name.trim() === name);
+  if (!c) { c = { id: newId('c'), name, sort: S.classes.length }; S.classes.push(c); }
+  return c.id;
+}
 
 /* ===== محرّك لوح الكتابة ===== */
 const FONTS = { naskh: '"Amiri"', ruqaa: '"Aref Ruqaa"' };
@@ -2242,10 +2645,10 @@ const IMP_STEPS = [['att', 'حب العربية'], ['read', 'القراءة'], [
 function impOf(st, ph) { st.impact = st.impact || {}; st.impact[ph] = st.impact[ph] || {}; return st.impact[ph]; }
 function impVal(st, ph, k) {
   const d = st.impact && st.impact[ph]; if (!d) return null;
-  if (k === 'khatt' || k === 'speak' || k === 'att') { const a = d[k]; return a && a.every(x => x) ? a.reduce((s, x) => s + x, 0) : null; }
+  if (k === 'khatt' || k === 'speak' || k === 'att') { const a = d[k]; return a && a.every(x => x) ? a.reduce((s, x) => s + x, 0) : d[k + 'T'] ?? null; }
   return d[k] ?? null;
 }
-function stepDone(st, ph, s) { const d = (st.impact || {})[ph] || {}; return s === 'read' ? d.wcpm != null : s === 'att' || s === 'khatt' || s === 'speak' ? !!(d[s] && d[s].every(x => x)) : d[s] != null; }
+function stepDone(st, ph, s) { const d = (st.impact || {})[ph] || {}; return s === 'read' ? d.wcpm != null : s === 'att' || s === 'khatt' || s === 'speak' ? d[s + 'T'] != null || !!(d[s] && d[s].every(x => x)) : d[s] != null; }
 function dictPct(ref, typed) {
   const norm = w => stripT(w).replace(/[.,،؛:!؟?«»"()\-]/g, '').trim();
   const a = ref.split(/\s+/).filter(Boolean).map(norm), b = typed.split(/\s+/).filter(Boolean).map(norm);
@@ -2260,14 +2663,14 @@ const FACES = ['<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#F
 /* جلسة القياس: #assess/معرّف الطالبة/pre|post/الخطوة */
 ROUTES.assess = (app, sid, ph = 'pre', step = 'att') => {
   if (!TEACHER) { go('#home'); setTimeout(teacherGate, 50); return; }
-  const st = S.students.find(s => s.id === sid); if (!st) { go('#teacher/impact'); return; }
+  const st = S.students.find(s => s.id === sid); if (!st) { go('#teacher/dash'); return; }
   const d = impOf(st, ph), phN = ph === 'pre' ? 'القياس القبلي' : 'القياس البعدي';
   shell(app, '', { c1: '#7B4DFF', c2: '#5A2FD6', soft: '#14B8A6', title: phN + ': ' + st.name, desc: 'تُطبَّق الخطوات بالترتيب، وتُحفظ كل خطوة مستقلة', icon: ISVG.castle, wm: 'ق' }, () => { });
   const body = $('#body');
   const idx = IMP_STEPS.findIndex(s => s[0] === step);
-  const next = () => { const n = IMP_STEPS[idx + 1]; save(); n ? go(`#assess/${sid}/${ph}/${n[0]}`) : go('#teacher/impact'); };
+  const next = () => { const n = IMP_STEPS[idx + 1]; save(); n ? go(`#assess/${sid}/${ph}/${n[0]}`) : go('#teacher/dash'); };
   body.innerHTML = `<div class="steps">${IMP_STEPS.map(([k, t], i) => `<a href="#assess/${sid}/${ph}/${k}" class="stp ${k === step ? 'on' : ''} ${stepDone(st, ph, k) ? 'ok' : ''}"><b>${stepDone(st, ph, k) ? '✓' : i + 1}</b>${t}</a>`).join('')}</div><div class="card" id="sbox"></div>
-   <div style="margin-top:12px"><a class="pill-link" href="#teacher/impact">لوحة نتائج القياس</a></div>`;
+   <div style="margin-top:12px"><a class="pill-link" href="#teacher/dash">لوحة نتائج القياس</a></div>`;
   const box = $('#sbox');
   if (step === 'att') {
     const v = d.att ? d.att.slice() : Array(6).fill(0);
@@ -2335,7 +2738,7 @@ function impChart(stats) {
   return `<div class="ichart">${rows.map(s => { const p1 = s.mPre / s.max * 100, p2 = s.mPost / s.max * 100; return `<div class="icol"><div class="ibars"><div class="ib pre" style="height:${p1}%"><span>${Math.round(p1)}%</span></div><div class="ib post" style="height:${p2}%"><span>${Math.round(p2)}%</span></div></div><div class="ilab">${s.name.replace(' %', '')}</div></div>`; }).join('')}</div>
    <div class="ileg"><span><i class="pre"></i>قبلي</span><span><i class="post"></i>بعدي</span></div>`;
 }
-function impactPanel(body, list = S.students, demo = false) {
+function impactPanel(body, list = S.students, demo = false, label = '') {
   const stats = impStats(list), done = ph => list.filter(s => IMP_STEPS.every(([k]) => stepDone(s, ph, k))).length;
   const fl = stats.find(s => s.k === 'wcpm');
   body.innerHTML = `<div class="kpis">
@@ -2354,13 +2757,13 @@ function impactPanel(body, list = S.students, demo = false) {
      <td style="white-space:nowrap">${demo ? '<span class="muted">مثال</span>' : `<a class="btn sm" href="#assess/${s.id}/pre/att">قبلي</a> <a class="btn ghost sm" href="#assess/${s.id}/post/att">بعدي</a>`}</td></tr>`).join('') || `<tr><td colspan="9" class="muted">تُضاف الطالبات من تبويب «الطالبات».</td></tr>`}</table>
     <br><button class="btn sm" id="iCsv">تنزيل النتائج (CSV)</button> <button class="btn gold sm" id="iRep">طباعة تقرير الأثر</button></div>`;
   $('#iCsv').onclick = () => {
-    const head = ['الطالبة', ...IMP_M.flatMap(([, n]) => [n + ' قبلي', n + ' بعدي'])];
-    const lines = [head].concat(list.map(s => [s.name, ...IMP_M.flatMap(([k]) => [impVal(s, 'pre', k) ?? '', impVal(s, 'post', k) ?? ''])]));
+    const head = ['الطالبة', 'الفصل', ...IMP_M.flatMap(([, n]) => [n + ' قبلي', n + ' بعدي'])];
+    const lines = [head].concat(list.map(s => [s.name, typeof clsName === 'function' ? clsName(s.cls) : '', ...IMP_M.flatMap(([k]) => [impVal(s, 'pre', k) ?? '', impVal(s, 'post', k) ?? ''])]));
     download(demo ? 'نموذج-نتائج-قياس-الأثر.csv' : 'نتائج-قياس-الأثر.csv', '﻿' + lines.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n'), 'text/csv');
   };
   $('#iRep').onclick = () => {
     const set = S.settings;
-    $('#print').innerHTML = `<div class="irep"><h1>${demo ? 'نموذج توضيحي: ' : ''}تقرير قياس الأثر: مملكة العربية</h1>${demo ? '<p><b>جميع البيانات في هذا التقرير افتراضية للتوضيح فقط.</b></p>' : ''}<p>${set.teacher ? 'المعلمة: ' + esc(set.teacher) + ' · ' : ''}${set.school ? esc(set.school) + ' · ' : ''}${hijri()}</p>
+    $('#print').innerHTML = `<div class="irep"><h1>${demo ? 'نموذج توضيحي: ' : ''}تقرير قياس الأثر: مملكة العربية</h1>${demo ? '<p><b>جميع البيانات في هذا التقرير افتراضية للتوضيح فقط.</b></p>' : ''}<p>${set.teacher ? 'المعلمة: ' + esc(set.teacher) + '، ' : ''}${set.school ? esc(set.school) + '، ' : ''}${label ? 'الفصل: ' + esc(label) + '، ' : ''}${hijri()}</p>
       <h2>متوسط الفصل قبل وبعد</h2>${impChart(stats)}
       <h2>ملخص المهارات</h2><table><tr><th>المهارة</th><th>العدد</th><th>قبلي</th><th>بعدي</th><th>التغيّر</th><th>تحسّنت</th><th>d</th></tr>${stats.map(s => `<tr><td>${s.name}</td><td>${s.n}</td><td>${f1(s.mPre)}</td><td>${f1(s.mPost)}</td><td>${sg(s.mDiff)}</td><td>${s.n ? s.up + ' من ' + s.n : '—'}</td><td>${dCell(s.d)}</td></tr>`).join('')}</table>
       <p class="fn">تصميم القياس: قبلي وبعدي لمجموعة واحدة، والنتائج تمثل تغيّرًا ملاحظًا أثناء التطبيق. تفسير حجم الأثر وفق Cohen (1988). تصميم: Research by Eman</p></div>`;
@@ -2393,6 +2796,132 @@ ROUTES['impact-demo'] = app => {
     <li><b>نتائج الطالبات:</b> درجة كل طالبة قبل وبعد، والتغيّر بالأخضر إن تحسّنت وبالأحمر إن تراجعت.</li></ol></div>`);
   impactPanel(body, demoStudents(), true);
 };
+
+/* ===== لوحة النتائج ===== */
+const ISL_KEYS = () => Object.keys(ISLANDS);
+function phaseDone(s, ph) { return IMP_STEPS.every(([k]) => stepDone(s, ph, k)); }
+function clsSummary(L) {
+  const fl = L.map(s => { const a = impVal(s, 'pre', 'wcpm'), b = impVal(s, 'post', 'wcpm'); return a != null && b != null ? b - a : null; }).filter(x => x != null);
+  return {
+    n: L.length,
+    isl: Object.fromEntries(ISL_KEYS().map(k => [k, avg(L.map(s => s.pts[k] || 0))])),
+    tot: avg(L.map(total)), bdg: avg(L.map(s => badgeDone(s).length)),
+    pre: L.filter(s => phaseDone(s, 'pre')).length, post: L.filter(s => phaseDone(s, 'post')).length,
+    flu: avg(fl), active: L.filter(s => total(s) > 0).length
+  };
+}
+function dashPanel(body) {
+  const L = tList(), f = tFilter(), sm = clsSummary(L);
+  const label = f === '' ? (S.classes.length ? 'كل الفصول' : '') : f === '_none' ? 'دون فصل' : clsName(f);
+  const maxIsl = Math.max(LEVEL_AT[LEVEL_AT.length - 1], ...ISL_KEYS().map(k => sm.isl[k] || 0));
+  const lvls = k => { const c = [0, 0, 0, 0]; L.forEach(s => c[levelOf(s.pts[k] || 0)]++); return c; };
+  const showCmp = f === '' && S.classes.length > 1;
+  const top = L.slice().sort((a, b) => total(b) - total(a)).filter(s => total(s) > 0).slice(0, 5);
+  const idle = L.filter(s => total(s) === 0);
+  body.innerHTML = `${cfilterHTML()}
+   ${!L.length ? `<div class="card empty"><h2>لا توجد بيانات ${f ? 'لهذا الفصل' : 'بعد'}</h2><p class="muted">تظهر اللوحة بعد إضافة الطالبات من تبويب «الطالبات والفصول»، ثم بدء نشاطهن في الجزر أو إدخال درجات القياس.</p><a class="btn" href="#teacher/students">الطالبات والفصول</a></div>` : `
+   <div class="kpis">
+    <div class="kpi"><b>${sm.n}</b>عدد الطالبات${label ? ` <small>${esc(label)}</small>` : ''}</div>
+    <div class="kpi"><b>${sm.active}</b>بدأن النشاط في الجزر</div>
+    <div class="kpi"><b>${f1n(sm.tot)}</b>متوسط النقاط للطالبة</div>
+    <div class="kpi"><b>${f1n(sm.bdg)}</b>متوسط الشارات المكتملة (من ${BADGES.length})</div>
+    <div class="kpi"><b>${sm.pre}</b>أكملن القياس القبلي</div>
+    <div class="kpi"><b>${sm.post}</b>أكملن القياس البعدي</div>
+   </div>
+   <div class="row2" style="margin-top:16px">
+    <div class="card"><h2 class="sec">متوسط النقاط في كل جزيرة</h2>
+     <div class="hbars">${ISL_KEYS().map(k => { const I = ISLANDS[k], v = sm.isl[k] || 0; return `<div class="hb"><span class="hl">${I.short}</span><span class="ht"><i style="width:${Math.max(2, v / maxIsl * 100)}%;background:${I.color}"></i></span><b>${f1n(v)}</b></div>`; }).join('')}</div>
+     <p class="muted" style="font-size:13px">النقاط تُجمع من الأنشطة داخل كل جزيرة، وتنتقل الطالبة إلى المستوى التالي عند ${LEVEL_AT.slice(1).join(' و')} نقطة.</p></div>
+    <div class="card"><h2 class="sec">توزيع الطالبات على المستويات</h2>
+     ${ISL_KEYS().map(k => { const I = ISLANDS[k], c = lvls(k); return `<div class="lv"><span class="hl">${I.short}</span><span class="lvbar">${c.map((n, i) => n ? `<i style="flex:${n};background:color-mix(in srgb,${I.color} ${30 + i * 23}%,#fff)" title="${I.levels[i]}: ${n}">${n}</i>` : '').join('')}</span></div><div class="lvk">${I.levels.map((t, i) => `<span><i style="background:color-mix(in srgb,${I.color} ${30 + i * 23}%,#fff)"></i>${t} ${c[i]}</span>`).join('')}</div>`; }).join('')}</div>
+   </div>
+   ${showCmp ? `<div class="card" style="margin-top:16px;overflow:auto"><h2 class="sec">مقارنة الفصول</h2>
+    <table class="cmp"><tr><th>الفصل</th><th>العدد</th>${ISL_KEYS().map(k => `<th>${ISLANDS[k].short}</th>`).join('')}<th>متوسط المجموع</th><th>متوسط الشارات</th><th>أكملن القبلي</th><th>أكملن البعدي</th><th>تغيّر الطلاقة</th></tr>
+    ${[...S.classes.map(c => [c.id, c.name]), ...(S.students.some(s => !s.cls) ? [['', 'دون فصل']] : [])].map(([id, nm]) => { const x = clsSummary(S.students.filter(s => (s.cls || '') === id)); return `<tr><td><a href="javascript:void 0" data-tc="${id || '_none'}">${esc(nm)}</a></td><td>${x.n}</td>${ISL_KEYS().map(k => `<td>${f1n(x.isl[k])}</td>`).join('')}<td><b>${f1n(x.tot)}</b></td><td>${f1n(x.bdg)}</td><td>${x.pre}</td><td>${x.post}</td><td class="${x.flu > 0 ? 'pos' : x.flu < 0 ? 'neg' : ''}">${x.flu == null ? '—' : sg(x.flu)}</td></tr>`; }).join('')}</table>
+    <p class="muted" style="font-size:13px">تغيّر الطلاقة: متوسط الفرق بين القياس البعدي والقبلي بالكلمات الصحيحة في الدقيقة، للطالبات اللواتي أكملن القياسين.</p></div>` : ''}
+   <div class="row2" style="margin-top:16px">
+    <div class="card"><h2 class="sec">الأعلى نقاطًا</h2>${top.length ? `<ol class="toplist">${top.map(s => `<li><span>${esc(s.name)}${f === '' && s.cls ? ` <small class="muted">${esc(clsName(s.cls))}</small>` : ''}</span><b>${total(s)}</b></li>`).join('')}</ol>` : '<p class="muted">لم تُسجَّل نقاط بعد.</p>'}</div>
+    <div class="card"><h2 class="sec">لم يبدأن بعد</h2>${idle.length ? `<p class="muted" style="font-size:14px">${idle.length} من ${L.length}</p><div class="chips">${idle.slice(0, 30).map(s => `<span class="chip sm">${esc(s.name)}</span>`).join('')}${idle.length > 30 ? `<span class="muted">و${idle.length - 30} أخريات</span>` : ''}</div>` : '<p class="muted">بدأت جميع الطالبات النشاط.</p>'}</div>
+   </div>
+   <h2 class="h-ruqaa dsec">نتائج القياس القبلي والبعدي</h2>
+   <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap"><a class="pill-link" href="#teacher/grades">إدخال الدرجات</a><a class="pill-link" href="#impact-demo">نموذج اللوحة ببيانات افتراضية</a></div>
+   <div id="impBox"></div>`}`;
+  bindCfilter();
+  if (L.length) impactPanel($('#impBox'), L, false, label);
+}
+
+/* ===== إدخال الدرجات ===== */
+function gradesPanel(body) {
+  const L = tList(), ph = S.gPh === 'post' ? 'post' : 'pre';
+  const cols = IMP_M.map(([k, n, max]) => [k, n.replace(/ \(.*\)| %/g, ''), k === 'wcpm' ? 250 : max]);
+  body.innerHTML = `${cfilterHTML()}
+   <div class="card" style="overflow:auto"><div class="ghead"><h2 class="sec" style="margin:0">درجات القياس</h2><span class="sp"></span>
+    <div class="seg" role="tablist"><button class="${ph === 'pre' ? 'on' : ''}" data-ph="pre">القياس القبلي</button><button class="${ph === 'post' ? 'on' : ''}" data-ph="post">القياس البعدي</button></div></div>
+    <p class="muted" style="font-size:14px;line-height:1.9">تُكتب درجة كل طالبة في خانة المهارة وتُحفظ تلقائيًّا، وتظهر مباشرة في «لوحة النتائج». ويمكن بدلًا من ذلك تطبيق أدوات القياس كاملة داخل المنصة من زر «جلسة القياس».</p>
+    <table class="gtab"><tr><th>الطالبة</th>${cols.map(([k, n, max]) => `<th>${n}${k === 'wcpm' ? '<br><small>كلمة في الدقيقة</small>' : `<br><small>من ${max}</small>`}</th>`).join('')}<th></th></tr>
+    ${L.map(s => `<tr><td>${esc(s.name)}</td>${cols.map(([k, , max]) => { const v = impVal(s, ph, k); return `<td><input class="gin" type="number" inputmode="decimal" min="0" ${max ? `max="${max}"` : ''} data-s="${s.id}" data-k="${k}" value="${v ?? ''}" aria-label="${esc(s.name)}"></td>`; }).join('')}<td><a class="btn ghost sm" href="#assess/${s.id}/${ph}/att">جلسة القياس</a></td></tr>`).join('') || `<tr><td colspan="9" class="muted">لا توجد طالبات. تُضاف من تبويب «الطالبات والفصول».</td></tr>`}</table></div>`;
+  bindCfilter();
+  $$('[data-ph]').forEach(b => b.onclick = () => { S.gPh = b.dataset.ph; _saveLocal(); render(); });
+  $$('.gin').forEach(inp => inp.onchange = () => {
+    const s = S.students.find(x => x.id === inp.dataset.s), k = inp.dataset.k, d = impOf(s, ph);
+    const max = inp.max ? +inp.max : 250, raw = inp.value.trim();
+    if (raw === '') { if (k === 'khatt' || k === 'speak' || k === 'att') { delete d[k + 'T']; delete d[k]; } else delete d[k]; inp.classList.remove('bad'); save(); return; }
+    let v = +raw.replace(',', '.');
+    if (!isFinite(v) || v < 0 || v > max) { inp.classList.add('bad'); toast(`القيمة بين 0 و${max}`); return; }
+    inp.classList.remove('bad'); v = Math.round(v * 10) / 10;
+    if (k === 'khatt' || k === 'speak' || k === 'att') { d[k + 'T'] = v; delete d[k]; } else d[k] = v;
+    save(); inp.classList.add('ok'); setTimeout(() => inp.classList.remove('ok'), 700);
+  });
+  $$('.gin').forEach(inp => inp.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); const all = $$('.gin'), i = all.indexOf(inp), cols = IMP_M.length; (all[i + cols] || all[i + 1] || inp).focus(); } });
+}
+
+/* ===== رفع ملف الأسماء ===== */
+function bindRosterImport() {
+  const inp = $('#xF'), drop = $('#xDrop'), prev = $('#xPrev');
+  const handle = async file => {
+    if (!file) return;
+    prev.innerHTML = '<p class="muted">جارٍ قراءة الملف…</p>';
+    let r;
+    try { r = mapRoster(await readSheetFile(file)); }
+    catch (e) {
+      prev.innerHTML = `<p class="amsg bad">${e.message === 'xls' ? 'الملف بصيغة Excel القديمة (xls). يُحفظ من Excel بصيغة «xlsx» ثم يُرفع.' : e.message === 'nodecomp' ? 'المتصفح لا يدعم قراءة xlsx، ويمكن حفظ الملف بصيغة CSV ورفعه.' : 'تعذّرت قراءة الملف. يُستعمل ملف xlsx أو csv فيه عمود للاسم وعمود للفصل.'}</p>`; return;
+    }
+    if (!r.list.length) { prev.innerHTML = '<p class="amsg bad">لم يُعثر على أسماء في الملف.</p>'; return; }
+    const exists = new Set(S.students.map(s => s.name.replace(/\s+/g, ' ').trim() + '|' + clsName(s.cls).trim()));
+    const seen = new Set();
+    const noCls = r.clsCol < 0 || r.list.every(x => !x.cls);
+    const draw = () => {
+      const fallback = noCls ? ($('#xC') ? $('#xC').value : '') : '';
+      const fbName = fallback === '_new' ? ($('#xCn') ? $('#xCn').value.trim() : '') : clsName(fallback);
+      seen.clear();
+      const items = r.list.map(x => { const cn = noCls ? fbName : x.cls; const key = x.name + '|' + cn; const dup = exists.has(key) || seen.has(key); seen.add(key); return { ...x, cn, dup }; });
+      const fresh = items.filter(x => !x.dup), groups = {};
+      fresh.forEach(x => groups[x.cn || 'دون فصل'] = (groups[x.cn || 'دون فصل'] || 0) + 1);
+      const newCls = Object.keys(groups).filter(n => n !== 'دون فصل' && !S.classes.some(c => c.name.trim() === n));
+      $('#xSum').innerHTML = `<p><b>${fresh.length}</b> اسمًا جديدًا${items.length - fresh.length ? `، ويُتجاوز <b>${items.length - fresh.length}</b> لوجوده مسبقًا` : ''}.</p>
+        <div class="chips">${Object.entries(groups).map(([n, c]) => `<span class="chip sm">${esc(n)}: ${c}</span>`).join('')}</div>
+        ${newCls.length ? `<p class="muted" style="font-size:14px">فصول تُنشأ: ${newCls.map(esc).join('، ')}</p>` : ''}`;
+      $('#xGo').disabled = !fresh.length;
+      $('#xGo').onclick = () => {
+        fresh.forEach(x => S.students.push(newStudent(x.name, classByName(x.cn))));
+        save(); toast(`أُضيفت ${fresh.length} طالبة ✔`, 3200); render();
+      };
+    };
+    prev.innerHTML = `<div class="xprev">
+      <p class="muted" style="font-size:14px">${r.header ? `عمود الاسم: «${esc(r.cols[r.nameCol] || '')}»${r.clsCol >= 0 ? `، وعمود الفصل: «${esc(r.cols[r.clsCol] || '')}»` : ''}` : 'لم يُعثر على صف عناوين، فعُدّ العمود الأول للاسم والثاني للفصل.'}</p>
+      ${noCls ? `<label>لا يتضمن الملف عمودًا للفصل. الفصل الذي تُضاف إليه الأسماء:</label><select id="xC">${clsOptions('', true)}<option value="_new">فصل جديد…</option></select><input type="text" id="xCn" placeholder="اسم الفصل الجديد" hidden>` : ''}
+      <table class="xt"><tr><th>#</th><th>اسم الطالبة</th><th>الفصل</th></tr>${r.list.slice(0, 8).map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.name)}</td><td>${esc(x.cls) || '—'}</td></tr>`).join('')}${r.list.length > 8 ? `<tr><td colspan="3" class="muted">و${r.list.length - 8} اسمًا آخر</td></tr>` : ''}</table>
+      <div id="xSum"></div>
+      <button class="btn" id="xGo">اعتماد الرفع</button> <button class="btn ghost" id="xNo">إلغاء</button></div>`;
+    $('#xNo').onclick = () => { prev.innerHTML = ''; inp.value = ''; };
+    if (noCls) { $('#xC').onchange = () => { $('#xCn').hidden = $('#xC').value !== '_new'; draw(); }; $('#xCn').oninput = draw; }
+    draw();
+  };
+  inp.onchange = () => handle(inp.files[0]);
+  ['dragover', 'dragenter'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => handle(e.dataTransfer.files[0]));
+}
 
 /* ===== قلعة الإنجاز ===== */
 function ringSVG(p, color) {
@@ -2443,35 +2972,76 @@ function printCerts(list) {
 function downloadAllCerts(list) { printCertsMarkup(list); download('شهادات-مملكة-العربية.html', certsHTMLFile(list), 'text/html'); }
 
 /* ===== لوحة المعلمة ===== */
+const clsName = id => { const c = (S.classes || []).find(x => x.id === id); return c ? c.name : ''; };
+const clsCount = id => S.students.filter(s => (s.cls || '') === id).length;
+function tFilter() { const f = S.tCls ?? ''; return f && f !== '_none' && !S.classes.some(c => c.id === f) ? '' : f; }
+function tList() { const f = tFilter(); return f === '' ? S.students : S.students.filter(s => (s.cls || '') === (f === '_none' ? '' : f)); }
+function cfilterHTML() {
+  const f = tFilter(), C = S.classes || []; if (!C.length) return '';
+  const none = S.students.some(s => !s.cls);
+  return `<div class="cfilter" role="tablist" aria-label="تصفية حسب الفصل"><button class="cf ${f === '' ? 'on' : ''}" data-tc="">كل الفصول <small>${S.students.length}</small></button>${C.map(c => `<button class="cf ${f === c.id ? 'on' : ''}" data-tc="${c.id}">${esc(c.name)} <small>${clsCount(c.id)}</small></button>`).join('')}${none ? `<button class="cf ${f === '_none' ? 'on' : ''}" data-tc="_none">دون فصل <small>${clsCount('')}</small></button>` : ''}</div>`;
+}
+function bindCfilter() { $$('[data-tc]').forEach(b => b.onclick = () => { S.tCls = b.dataset.tc; _saveLocal(); render(); }); }
+const clsOptions = (sel, withNone = true) => `${withNone ? `<option value="">دون فصل</option>` : ''}${S.classes.map(c => `<option value="${c.id}" ${c.id === sel ? 'selected' : ''}>${esc(c.name)}</option>`).join('')}`;
+const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+const f1n = v => v == null ? '—' : (Math.round(v * 10) / 10).toLocaleString('ar-SA-u-nu-latn');
+
 ROUTES.teacher = (app, tab = 'students') => {
   if (!TEACHER) { go('#home'); setTimeout(teacherGate, 50); return; }
-  const tabs = [['students', 'الطالبات'], ['impact', 'قياس الأثر'], ['track', 'المتابعة'], ['content', 'المحتوى'], ['settings', 'الإعدادات']];
-  shell(app, '', { c1: '#3B2A6B', c2: '#7B4DFF', soft: '#7B4DFF', title: 'لوحة المعلمة', desc: 'إدارة الطالبات والمحتوى ومتابعة الإنجاز', icon: ISVG.lock, tabs, active: tab, base: 'teacher' }, () => { });
+  if (tab === 'impact') tab = 'dash';
+  const tabs = [['students', 'الطالبات والفصول'], ['dash', 'لوحة النتائج'], ['grades', 'إدخال الدرجات'], ['track', 'المتابعة'], ['content', 'المحتوى'], ['settings', 'الإعدادات']];
+  shell(app, '', { c1: '#3B2A6B', c2: '#7B4DFF', soft: '#7B4DFF', title: 'لوحة المعلمة', desc: 'الفصول والطالبات، ولوحة النتائج، والمحتوى', icon: ISVG.lock, tabs, active: tab, base: 'teacher' }, () => { });
   const body = $('#body'); body.classList.add('tpanel');
-  body.insertAdjacentHTML('beforebegin', `<div style="text-align:left;margin:-8px 0 10px"><button class="btn ghost sm" onclick="setTeacher(false);go('#home')">خروج من لوحة المعلمة</button></div>`);
-  if (tab === 'impact') { impactPanel(body); body.insertAdjacentHTML('afterbegin', `<div style="margin-bottom:14px"><a class="pill-link" href="#impact-demo">عرض نموذج اللوحة ببيانات افتراضية</a></div>`); }
-  else if (tab === 'students') {
-    body.innerHTML = `<div class="row2"><div class="card"><h2 class="sec">إضافة طالبات</h2><label>الأسماء (اسم في كل سطر):</label><textarea id="names" placeholder="مثال:&#10;ريم&#10;لمى&#10;جود"></textarea><br><br><button class="btn" id="add">إضافة</button></div>
-     <div class="card"><h2 class="sec">طريقة الاستعمال</h2><p class="lead" style="font-size:17px">تختار كل طالبة اسمها من الخريطة قبل أن تبدأ، فتُحفظ نقاطها في كل جزيرة. ويمكن منح نقاط إضافية بالأزرار + و −. تُحفظ البيانات على هذا الجهاز، ويُستحسن حفظ نسخة احتياطية من «الإعدادات» بين حين وآخر.</p></div></div>
-     <div class="card" style="margin-top:16px;overflow:auto"><table><tr><th>الطالبة</th>${Object.values(ISLANDS).map(I => `<th>${I.icon} ${I.short}</th>`).join('')}<th>المجموع</th><th></th></tr>
-     ${S.students.map(s => `<tr><td>${esc(s.name)}</td>${Object.keys(ISLANDS).map(k => `<td><button class="pm-btn" data-s="${s.id}" data-k="${k}" data-d="-1">−</button> <b>${s.pts[k]}</b> <button class="pm-btn" data-s="${s.id}" data-k="${k}" data-d="1">+</button></td>`).join('')}<td><b>${total(s)}</b></td><td><button class="btn ghost sm" data-cert="${s.id}" title="طباعة الشهادة"></button> <button class="btn ghost sm" data-certd="${s.id}" title="تنزيل الشهادة صورةً"></button> <button class="btn ghost sm" data-del="${s.id}"></button></td></tr>`).join('') || `<tr><td colspan="7" class="muted">لا توجد طالبات بعد.</td></tr>`}</table>
-     ${S.students.length ? '<br><button class="btn gold sm" id="allCert">طباعة شهادات الجميع</button> <button class="btn ghost sm" id="allCertD">تنزيل شهادات الجميع</button>' : ''}</div>`;
-    $('#add').onclick = () => { const ns = $('#names').value.split('\n').map(x => x.trim()).filter(Boolean); ns.forEach(n => S.students.push(newStudent(n))); save(); toast('أُضيفت ' + ns.length + ' طالبة'); render(); };
-    $$('[data-d]').forEach(b => b.onclick = () => { const s = S.students.find(x => x.id === b.dataset.s); s.pts[b.dataset.k] = Math.max(0, s.pts[b.dataset.k] + +b.dataset.d); save(); render(); });
+  const acct = typeof CLOUD !== 'undefined' && CLOUD.user;
+  body.insertAdjacentHTML('beforebegin', `<div class="tbar"><span id="cloudSt" class="cst"></span><span class="sp"></span>${acct ? `<span class="muted tmail" dir="ltr">${esc(CLOUD.user.email || '')}</span>` : (typeof CLOUD !== 'undefined' && CLOUD.sb ? '<button class="btn sm" onclick="authModal()">الدخول إلى الحساب</button>' : '')}<button class="btn ghost sm" onclick="setTeacher(false);go('#home')">قفل لوحة المعلمة</button></div>`);
+  setCloudState(acct ? CLOUD.state === 'off' ? 'ok' : CLOUD.state : 'off');
+
+  if (tab === 'students') {
+    const L = tList(), f = tFilter();
+    body.innerHTML = `<div class="row2">
+     <div class="card"><h2 class="sec">الفصول</h2>
+      ${S.classes.length ? `<div class="clist">${S.classes.map(c => `<div class="crow"><b>${esc(c.name)}</b><span class="muted">${clsCount(c.id)} طالبة</span><span class="sp"></span><button class="btn ghost sm" data-ren="${c.id}">تعديل الاسم</button><button class="btn ghost sm" data-cdel="${c.id}">حذف</button></div>`).join('')}</div>` : '<p class="muted">لم تُضف فصول بعد. تُنشأ الفصول يدويًّا هنا، أو تلقائيًّا عند رفع ملف الأسماء.</p>'}
+      <div class="addc"><input type="text" id="cN" placeholder="اسم الفصل، مثل: الرابع (1)"><button class="btn sm" id="cAdd">إضافة فصل</button></div></div>
+     <div class="card"><h2 class="sec">رفع أسماء الطالبات من ملف Excel</h2>
+      <p class="muted" style="font-size:15px;line-height:1.9">ملف بصيغة xlsx أو csv فيه عمودان: «اسم الطالبة» و«الفصل». يُنشأ كل فصل غير موجود تلقائيًّا، ولا تتكرر الأسماء الموجودة مسبقًا في الفصل نفسه.</p>
+      <label class="xdrop" id="xDrop"><input type="file" id="xF" accept=".xlsx,.csv,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden><b>اختيار ملف الأسماء</b><small>أو إفلاته هنا</small></label>
+      <a class="pill-link" href="قالب-أسماء-الطالبات.xlsx" download>تنزيل قالب Excel جاهز</a>
+      <div id="xPrev"></div></div></div>
+     <div class="card" style="margin-top:16px"><h2 class="sec">إضافة أسماء يدويًّا</h2>
+      <div class="addm"><textarea id="names" placeholder="اسم في كل سطر"></textarea><div><label>الفصل</label><select id="nC">${clsOptions(f && f !== '_none' ? f : '')}</select><br><br><button class="btn" id="add">إضافة</button></div></div></div>
+     <div class="card" style="margin-top:16px;overflow:auto"><h2 class="sec">قائمة الطالبات</h2>${cfilterHTML()}
+      <table><tr><th>الطالبة</th>${S.classes.length ? '<th>الفصل</th>' : ''}${Object.values(ISLANDS).map(I => `<th>${I.short}</th>`).join('')}<th>المجموع</th><th></th></tr>
+      ${L.map(s => `<tr><td>${esc(s.name)}</td>${S.classes.length ? `<td><select class="mv" data-mv="${s.id}" aria-label="فصل ${esc(s.name)}">${clsOptions(s.cls || '')}</select></td>` : ''}${Object.keys(ISLANDS).map(k => `<td class="pmc"><button class="pm-btn" data-s="${s.id}" data-k="${k}" data-d="-1" aria-label="إنقاص">−</button> <b>${s.pts[k]}</b> <button class="pm-btn" data-s="${s.id}" data-k="${k}" data-d="1" aria-label="زيادة">+</button></td>`).join('')}<td><b>${total(s)}</b></td><td class="acts"><button class="btn ghost sm" data-cert="${s.id}">طباعة الشهادة</button> <button class="btn ghost sm" data-certd="${s.id}">تنزيل</button> <button class="btn ghost sm del" data-del="${s.id}">حذف</button></td></tr>`).join('') || `<tr><td colspan="9" class="muted">لا توجد طالبات ${f ? 'في هذا الفصل' : 'بعد'}.</td></tr>`}</table>
+      ${L.length ? `<br><button class="btn gold sm" id="allCert">طباعة شهادات ${f ? 'الفصل' : 'الجميع'}</button> <button class="btn ghost sm" id="allCertD">تنزيل شهادات ${f ? 'الفصل' : 'الجميع'}</button>${f ? ' <button class="btn ghost sm del" id="delCls">حذف طالبات هذا الفصل</button>' : ''}` : ''}</div>`;
+    bindCfilter();
+    $('#cAdd').onclick = () => { const n = $('#cN').value.trim(); if (!n) { toast('يُكتب اسم الفصل أولًا'); return; } if (S.classes.some(c => c.name.trim() === n)) { toast('هذا الفصل موجود'); return; } classByName(n); save(); toast('أُضيف الفصل ✔'); render(); };
+    $('#cN').onkeydown = e => e.key === 'Enter' && $('#cAdd').click();
+    $$('[data-ren]').forEach(b => b.onclick = () => { const c = S.classes.find(x => x.id === b.dataset.ren); const n = prompt('الاسم الجديد للفصل', c.name); if (n && n.trim()) { c.name = n.trim(); save(); render(); } });
+    $$('[data-cdel]').forEach(b => b.onclick = () => { const c = S.classes.find(x => x.id === b.dataset.cdel); if (!confirm(`حذف فصل «${c.name}»؟ تبقى طالباته في القائمة دون فصل.`)) return; S.students.forEach(s => { if (s.cls === c.id) s.cls = ''; }); S.classes = S.classes.filter(x => x !== c); if (S.tCls === c.id) S.tCls = ''; save(); render(); });
+    $('#add').onclick = () => { const ns = $('#names').value.split('\n').map(x => x.trim()).filter(Boolean); if (!ns.length) { toast('تُكتب الأسماء أولًا'); return; } const c = $('#nC').value; ns.forEach(n => S.students.push(newStudent(n, c))); save(); toast('أُضيفت ' + ns.length + ' طالبة'); render(); };
+    $$('[data-mv]').forEach(sel => sel.onchange = () => { const s = S.students.find(x => x.id === sel.dataset.mv); s.cls = sel.value; save(); toast('نُقلت الطالبة إلى ' + (clsName(s.cls) || 'دون فصل')); });
+    $$('[data-d]').forEach(b => b.onclick = () => { const s = S.students.find(x => x.id === b.dataset.s); s.pts[b.dataset.k] = Math.max(0, s.pts[b.dataset.k] + +b.dataset.d); save(); b.parentElement.querySelector('b').textContent = s.pts[b.dataset.k]; b.closest('tr').children[b.closest('tr').children.length - 2].firstChild.textContent = total(s); });
     $$('[data-del]').forEach(b => b.onclick = () => { const s = S.students.find(x => x.id === b.dataset.del); if (confirm('حذف ' + s.name + ' وكل نقاطها؟')) { S.students = S.students.filter(x => x !== s); if (S.cur === s.id) S.cur = null; save(); render(); } });
     $$('[data-cert]').forEach(b => b.onclick = () => printCerts([S.students.find(x => x.id === b.dataset.cert)]));
     $$('[data-certd]').forEach(b => b.onclick = () => downloadCert(S.students.find(x => x.id === b.dataset.certd)));
-    $('#allCert') && ($('#allCert').onclick = () => printCerts(S.students));
-    $('#allCertD') && ($('#allCertD').onclick = () => downloadAllCerts(S.students));
+    $('#allCert') && ($('#allCert').onclick = () => printCerts(L));
+    $('#allCertD') && ($('#allCertD').onclick = () => downloadAllCerts(L));
+    $('#delCls') && ($('#delCls').onclick = () => { if (!confirm(`حذف ${L.length} طالبة من «${clsName(f) || 'دون فصل'}» مع نقاطهن ونتائجهن؟`)) return; const ids = new Set(L.map(s => s.id)); S.students = S.students.filter(s => !ids.has(s.id)); if (ids.has(S.cur)) S.cur = null; save(); render(); });
+    bindRosterImport();
+  } else if (tab === 'dash') {
+    dashPanel(body);
+  } else if (tab === 'grades') {
+    gradesPanel(body);
   } else if (tab === 'track') {
-    const rows = S.students.map(s => { const f = s.flu && s.flu.length ? s.flu[s.flu.length - 1] : null; const f0 = s.flu && s.flu.length > 1 ? s.flu[0] : null; return { s, f, f0 }; });
-    body.innerHTML = `<div class="card" style="overflow:auto"><h2 class="sec">متابعة الإنجاز</h2><table><tr><th>الطالبة</th>${Object.values(ISLANDS).map(I => `<th>${I.short}</th>`).join('')}<th>المجموع</th><th>الشارات</th><th>أول قياس طلاقة</th><th>آخر قياس طلاقة</th><th>تسجيلات</th></tr>
-      ${rows.map(({ s, f, f0 }) => `<tr><td>${esc(s.name)}</td>${Object.keys(ISLANDS).map(k => `<td>${s.pts[k]}<br><small class="muted">${ISLANDS[k].levels[levelOf(s.pts[k])]}</small></td>`).join('')}<td><b>${total(s)}</b></td><td>${badgeDone(s).length} / ${BADGES.length}</td><td>${f0 ? f0.wcpm + ' ك/د · ' + f0.acc + '%' : '—'}</td><td>${f ? f.wcpm + ' ك/د · ' + f.acc + '%' : '—'}</td><td>${(s.recs || []).length}</td></tr>`).join('') || '<tr><td colspan="9" class="muted">لا توجد بيانات بعد.</td></tr>'}</table>
+    const rows = tList().map(s => { const f = s.flu && s.flu.length ? s.flu[s.flu.length - 1] : null; const f0 = s.flu && s.flu.length > 1 ? s.flu[0] : null; return { s, f, f0 }; });
+    body.innerHTML = `<div class="card" style="overflow:auto"><h2 class="sec">متابعة الإنجاز</h2>${cfilterHTML()}<table><tr><th>الطالبة</th>${S.classes.length ? '<th>الفصل</th>' : ''}${Object.values(ISLANDS).map(I => `<th>${I.short}</th>`).join('')}<th>المجموع</th><th>الشارات</th><th>أول قياس طلاقة</th><th>آخر قياس طلاقة</th><th>تسجيلات</th></tr>
+      ${rows.map(({ s, f, f0 }) => `<tr><td>${esc(s.name)}</td>${S.classes.length ? `<td>${esc(clsName(s.cls)) || '—'}</td>` : ''}${Object.keys(ISLANDS).map(k => `<td>${s.pts[k]}<br><small class="muted">${ISLANDS[k].levels[levelOf(s.pts[k])]}</small></td>`).join('')}<td><b>${total(s)}</b></td><td>${badgeDone(s).length} من ${BADGES.length}</td><td>${f0 ? f0.wcpm + ' ك/د، ' + f0.acc + '%' : '—'}</td><td>${f ? f.wcpm + ' ك/د، ' + f.acc + '%' : '—'}</td><td>${(s.recs || []).length}</td></tr>`).join('') || '<tr><td colspan="10" class="muted">لا توجد بيانات بعد.</td></tr>'}</table>
       <br><button class="btn sm" id="csv">تنزيل الجدول (CSV)</button>
       <p class="muted" style="font-size:14px">ك/د: كلمة صحيحة في الدقيقة. المقارنة بين أول قياس وآخره تبيّن تقدّم الطالبة في الطلاقة.</p></div>`;
+    bindCfilter();
     $('#csv').onclick = () => {
-      const head = ['الطالبة', ...Object.values(ISLANDS).map(I => I.short), 'المجموع', 'أول طلاقة (ك/د)', 'أول دقة %', 'آخر طلاقة (ك/د)', 'آخر دقة %'];
-      const lines = [head].concat(rows.map(({ s, f, f0 }) => [s.name, ...Object.keys(ISLANDS).map(k => s.pts[k]), total(s), f0 ? f0.wcpm : '', f0 ? f0.acc : '', f ? f.wcpm : '', f ? f.acc : '']));
+      const head = ['الطالبة', 'الفصل', ...Object.values(ISLANDS).map(I => I.short), 'المجموع', 'الشارات', 'أول طلاقة (ك/د)', 'أول دقة %', 'آخر طلاقة (ك/د)', 'آخر دقة %'];
+      const lines = [head].concat(rows.map(({ s, f, f0 }) => [s.name, clsName(s.cls), ...Object.keys(ISLANDS).map(k => s.pts[k]), total(s), badgeDone(s).length, f0 ? f0.wcpm : '', f0 ? f0.acc : '', f ? f.wcpm : '', f ? f.acc : '']));
       download('متابعة-مملكة-العربية.csv', '﻿' + lines.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n'), 'text/csv');
     };
   } else if (tab === 'content') {
@@ -2495,18 +3065,26 @@ ROUTES.teacher = (app, tab = 'students') => {
     $('#mine').innerHTML = mine.length ? mine.map(([k, o]) => `<div style="display:flex;gap:8px;align-items:center;padding:6px 0">${k === 's' ? '' : ''} ${esc(o.title)} <button class="btn ghost sm" style="margin-inline-start:auto" data-rm="${k}:${o.id}"></button></div>`).join('') : '<p class="muted">لم تُضيفي محتوى بعد.</p>';
     $$('[data-rm]').forEach(b => b.onclick = () => { const [k, id] = b.dataset.rm.split(':'); if (k === 's') S.stories = S.stories.filter(x => x.id !== id); else S.dicts = S.dicts.filter(x => x.id !== id); save(); render(); });
   } else {
-    body.innerHTML = `<div class="row2"><div class="card"><h2 class="sec">بيانات المعلمة</h2>
+    const C = typeof CLOUD !== 'undefined' ? CLOUD : {};
+    body.innerHTML = `<div class="card acard"><h2 class="sec">الحساب والحفظ</h2>
+      ${C.user ? `<p>الحساب المرتبط: <bdi dir="ltr">${esc(C.user.email || '')}</bdi></p><p class="muted" style="font-size:15px;line-height:1.9">تُحفظ الفصول والطالبات والنقاط والنتائج والمحتوى المضاف في الحساب، وتبقى نسخة على هذا الجهاز للعمل دون إنترنت. وعند الدخول بالحساب نفسه من جهاز آخر تظهر البيانات كاملة. أما التسجيلات الصوتية فتبقى على الجهاز الذي سُجّلت فيه.</p>
+        <button class="btn sm" id="cNow">حفظ الآن</button> <button class="btn ghost sm" id="cPull">جلب آخر البيانات من الحساب</button> <button class="btn ghost sm del" id="cOut">تسجيل الخروج من الحساب</button>`
+      : C.sb ? `<p class="muted" style="font-size:15px;line-height:1.9">البيانات الآن على هذا الجهاز فقط. وبالدخول إلى حساب تُرفع البيانات الموجودة إليه، وتظهر على أي جهاز آخر.</p><button class="btn sm" onclick="authModal()">الدخول إلى الحساب أو إنشاؤه</button>`
+      : '<p class="muted">الحفظ في الحساب غير متاح في هذه النسخة، والبيانات على هذا الجهاز فقط.</p>'}</div>
+     <div class="row2" style="margin-top:16px"><div class="card"><h2 class="sec">بيانات المعلمة</h2>
       <label>اسم المعلمة</label><input type="text" id="tN" value="${esc(S.settings.teacher)}"><label>اسم المدرسة</label><input type="text" id="tS" value="${esc(S.settings.school)}">
-      <label>الرمز السري الجديد</label><input type="password" id="tP" placeholder="يُترك فارغًا للإبقاء على الرمز الحالي" inputmode="numeric">
-      <br><br><button class="btn" id="sv">حفظ</button></div>
-     <div class="card"><h2 class="sec">النسخ الاحتياطي</h2><p class="muted">تُحفظ البيانات في هذا الجهاز والمتصفح فقط. ويمكن تنزيل نسخة احتياطية ونقلها إلى جهاز آخر.</p>
+      <label>الرمز السري للوحة المعلمة</label><input type="password" id="tP" placeholder="يُترك فارغًا للإبقاء على الرمز الحالي" inputmode="numeric">
+      <p class="muted" style="font-size:14px">يقفل الرمز لوحة المعلمة على جهاز الفصل، ويبقى الجهاز مرتبطًا بالحساب فتُحفظ نقاط الطالبات.</p>
+      <button class="btn" id="sv">حفظ</button></div>
+     <div class="card"><h2 class="sec">النسخ الاحتياطي</h2><p class="muted">يمكن تنزيل نسخة احتياطية من البيانات بصيغة ملف، ونقلها إلى جهاز آخر.</p>
       <button class="btn sm" id="exp">تنزيل نسخة احتياطية</button> <label class="btn ghost sm" style="display:inline-flex;margin:0">استعادة نسخة<input type="file" id="imp" accept=".json" hidden></label>
       <p class="muted" style="font-size:14px">لا تتضمن النسخة الاحتياطية التسجيلات الصوتية.</p>
-      <h3 style="margin-top:20px;color:#c0392b">تصفير البيانات</h3><button class="btn ghost sm" id="rst">حذف كل الطالبات والنقاط</button></div></div>`;
+      <h3 style="margin-top:20px;color:#c0392b">تصفير البيانات</h3><button class="btn ghost sm del" id="rst">حذف كل الفصول والطالبات والنقاط</button></div></div>`;
+    if (C.user) { $('#cNow').onclick = async () => { await cloudFlush(); toast(CLOUD.state === 'ok' ? 'حُفظت البيانات في الحساب ✔' : 'تعذّر الحفظ الآن، وستُعاد المحاولة'); }; $('#cPull').onclick = async () => { await cloudFlush(); await cloudPull(false); toast('حُدّثت البيانات ✔'); render(); }; $('#cOut').onclick = cloudSignOut; }
     $('#sv').onclick = () => { S.settings.teacher = $('#tN').value.trim(); S.settings.school = $('#tS').value.trim(); const p = $('#tP').value.trim(); if (p) S.settings.pin = p; save(); toast('حُفظت الإعدادات ✔'); };
     $('#exp').onclick = () => download('مملكة-العربية-نسخة-احتياطية.json', JSON.stringify(S), 'application/json');
-    $('#imp').onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { const d = JSON.parse(r.result); if (!d.students) throw 0; S = Object.assign(S, d); save(); toast('استُعيدت البيانات ✔'); render(); } catch (x) { toast('الملف غير صالح'); } }; r.readAsText(f); };
-    $('#rst').onclick = () => { if (confirm('سيُحذف كل شيء: الطالبات والنقاط والقصص المضافة. هل تريدين المتابعة؟')) { S.students = []; S.cur = null; S.stories = []; S.dicts = []; save(); toast('تم التصفير'); render(); } };
+    $('#imp').onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { const d = JSON.parse(r.result); if (!d.students) throw 0; S = Object.assign(S, d); S.classes = S.classes || []; save(); toast('استُعيدت البيانات ✔'); render(); } catch (x) { toast('الملف غير صالح'); } }; r.readAsText(f); };
+    $('#rst').onclick = () => { if (confirm('سيُحذف كل شيء' + (C.user ? ' من الجهاز ومن الحساب' : '') + ': الفصول والطالبات والنقاط والنتائج والقصص المضافة. هل تريدين المتابعة؟')) { S.students = []; S.classes = []; S.cur = null; S.stories = []; S.dicts = []; save(); toast('تم التصفير'); render(); } };
   }
 };
 const IN_ARTIFACT = !!(window.claude && typeof window.claude.use === 'function');
