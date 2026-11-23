@@ -777,6 +777,30 @@ body{background:var(--bg);color:var(--ink)}
 
 .demo-banner{background:#FFF4D6;border:1px dashed #F08C00;color:#6B4A00;border-radius:16px;padding:12px 16px;margin-bottom:16px;line-height:1.9}
 .howto{margin:0;padding-inline-start:22px;line-height:2.1;font-size:16px}
+
+/* المرشد ضاد */
+.dad{display:block;overflow:visible}.dad.think{animation:dbob 3s ease-in-out infinite}@keyframes dbob{50%{transform:translateY(-6px)}}
+.dad.happy{animation:djump .6s cubic-bezier(.3,1.6,.5,1)}@keyframes djump{40%{transform:translateY(-14px) scale(1.04)}}
+.gd-band{max-width:1180px;margin:34px auto;padding:0 18px}
+.gd-band-in{display:flex;align-items:center;gap:22px;background:linear-gradient(120deg,#F1EBFF,#FFF4DA);border:1px solid #E4DBFF;border-radius:28px;padding:22px 28px}
+.gd-band-in p{font-size:19px;margin:6px 0 14px;color:#3b3560}
+.gd{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start}
+.gd-side{display:flex;flex-direction:column;align-items:center;gap:10px;position:sticky;top:90px}
+.gd-bub{background:#fff;border:2px solid #E4DBFF;border-radius:20px;padding:12px 16px;font:700 18px var(--ui);text-align:center;position:relative}
+.gd-bub::before{content:"";position:absolute;top:-10px;left:50%;margin-left:-9px;border:9px solid transparent;border-top:0;border-bottom-color:#E4DBFF}
+.gd-top{display:flex;justify-content:space-between;align-items:center;color:var(--ink2);font:600 16px var(--ui);margin-bottom:10px}
+.gd-dots{display:flex;gap:5px}.gd-dots i{width:12px;height:12px;border-radius:50%;background:#E6E3F3}.gd-dots i.ok{background:#1fae9b}.gd-dots i.no{background:#F0567A}.gd-dots i.cur{outline:3px solid #9B7BFF;outline-offset:1px}
+.gd-q h2{font-size:30px;line-height:1.5;margin:6px 0 16px}
+.gd-opts{display:grid;gap:10px}
+.gd-o{border:2px solid #E4DBFF;background:#fff;border-radius:18px;padding:14px 18px;font:700 22px var(--ui);text-align:start;cursor:pointer;transition:transform .12s,border-color .15s}
+.gd-o:hover{border-color:#9B7BFF;transform:translateY(-2px)}
+.gd-o.ok{border-color:#1fae9b;background:#E8F8F4}.gd-o.no{border-color:#F0567A;background:#FDECF1}
+.gd-fb{margin-top:14px;min-height:50px}
+.gd-empty,.gd-end{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.gd-head{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.gtab2 td{vertical-align:middle}.gbar{display:inline-block;width:80px;height:9px;border-radius:9px;background:#EEE;vertical-align:middle;overflow:hidden}.gbar i{display:block;height:100%;background:#1fae9b}
+@media (max-width:700px){.gd{grid-template-columns:1fr}.gd-side{position:static;flex-direction:row}.gd-side .dad{width:90px;height:90px}.gd-q h2{font-size:24px}.gd-band-in{flex-direction:column;text-align:center}}
+.gtab2 td:nth-child(2){min-width:170px}
 /* ===== لوحة المعلمة: الحساب والفصول والنتائج ===== */
 .tbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-8px 0 14px}
 .tbar .sp,.ghead .sp,.crow .sp{flex:1}
@@ -2471,7 +2495,7 @@ ROUTES.speak = (app, tab = 'videos') => {
 /* ===== الشريط العلوي والصفحة الرئيسية ===== */
 function topbar(active) {
   const st = me();
-  const nav = [['home', 'الرئيسية', '#home'], ['khatt', 'الخط', '#khatt'], ['imla', 'الإملاء', '#imla'], ['read', 'القراءة', '#read'], ['speak', 'الخطابة', '#speak'], ['alam', 'أعلام العربية', '#alam'], ['castle', 'سجل الإنجاز', '#castle']];
+  const nav = [['home', 'الرئيسية', '#home'], ['khatt', 'الخط', '#khatt'], ['imla', 'الإملاء', '#imla'], ['read', 'القراءة', '#read'], ['speak', 'الخطابة', '#speak'], ['alam', 'أعلام العربية', '#alam'], ['guide', 'المرشد ضاد', '#guide'], ['castle', 'سجل الإنجاز', '#castle']];
   return `<header class="topbar"><i class="rainbow"></i><div class="tb-in">
     <a class="brand" href="#home"><span class="mark">ض</span><span><b>مملكة العربية</b><small>رحلة في جمال لغتنا</small></span></a>
     <nav class="tnav">${nav.map(([k, t, h]) => `<a href="${h}" class="${k === active ? 'on' : ''}">${t}</a>`).join('')}</nav>
@@ -2518,6 +2542,8 @@ ROUTES.home = app => {
        </svg>
        <h3>${I.name}</h3><p>${I.desc}</p><span class="am">${meta[k]}</span>${st ? `<span class="apt">${st.pts[k]} نقطة · ${I.levels[levelOf(st.pts[k])]}</span>` : ''}</a>`; }).join('')}</div>
    </section>
+
+   <section class="gd-band"><div class="gd-band-in">${dad(150)}<div><h2 class="h-ruqaa">المرشد ضاد</h2><p>يطرح عليكِ ضاد أسئلة معلمتكِ سؤالًا بعد سؤال، ويخبركِ فورًا بالإجابة الصحيحة.</p><a class="btn" href="#guide">أسئلة ضاد (${S.gq.length})</a></div></div></section>
 
    <section class="sec3 lib-band"><div class="row-head"><h2 class="h-ruqaa">المكتبة</h2><a class="pill-link" href="#read/lib">جميع القصص (${STORIES.length})</a></div>
      <p class="sub">قصص قصيرة في القيم ولغتنا الجميلة وسير الأعلام والمعرفة، وتُقرأ دون اتصال بالإنترنت.</p>
@@ -2923,6 +2949,86 @@ function bindRosterImport() {
   drop.addEventListener('drop', e => handle(e.dataTransfer.files[0]));
 }
 
+/* ===== المرشد الرقمي «ضاد»: تزوّده المعلمة بأسئلتها، وتجيب عنها الطالبات ===== */
+const GQ_DEFAULT = [
+  { id: 'g1', q: 'ما جمع كلمة «كتاب»؟', a: 'كُتُب', w: ['كاتب', 'مكتبة'] },
+  { id: 'g2', q: 'أيّ الكلمات كُتبت فيها التاء المربوطة كتابةً صحيحة؟', a: 'مدرسة', w: ['مدرست', 'مدرسه'] },
+  { id: 'g3', q: 'ما ضدّ كلمة «سريع»؟', a: 'بطيء', w: ['قويّ', 'كبير'] },
+  { id: 'g4', q: 'في كلمة «سَأَلَ» همزة متوسطة، فعلى أيّ حرف كُتبت؟', a: 'الألف', w: ['الواو', 'الياء'] },
+  { id: 'g5', q: 'ما معنى كلمة «شُجاع»؟', a: 'جريء', w: ['خائف', 'كسول'] },
+  { id: 'g6', q: 'أيّ هذه الكلمات تبدأ بلام شمسية؟', a: 'الشمس', w: ['القمر', 'الكتاب'] }
+];
+if (!Array.isArray(S.gq)) S.gq = GQ_DEFAULT.map(x => ({ ...x, w: [...x.w] }));
+const gqNew = () => 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+function dad(sz = 120, mood = '') {
+  const id = 'dd' + Math.random().toString(36).slice(2, 7), happy = mood === 'happy', think = mood === 'think';
+  return `<svg class="dad ${mood}" width="${sz}" height="${sz}" viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B7BFF"/><stop offset="1" stop-color="#5B33D6"/></linearGradient></defs>
+   <ellipse cx="60" cy="112" rx="30" ry="5" fill="#2A1B4A" opacity=".12"/>
+   <path d="M60 6 C60 6 22 50 22 74 a38 38 0 0 0 76 0 C98 50 60 6 60 6Z" fill="url(#${id})"/>
+   <path d="M44 40 C38 50 33 60 32 68" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35" fill="none"/>
+   <text x="60" y="104" text-anchor="middle" font-family="Amiri,serif" font-weight="700" font-size="26" fill="#FFD76A">ض</text>
+   ${happy ? '<path d="M41 66 q6-7 12 0 M67 66 q6-7 12 0" stroke="#2A1B4A" stroke-width="3.4" fill="none" stroke-linecap="round"/>' : `<ellipse cx="47" cy="66" rx="6" ry="7.5" fill="#fff"/><ellipse cx="73" cy="66" rx="6" ry="7.5" fill="#fff"/><circle cx="${think ? 49 : 48}" cy="${think ? 64 : 67}" r="3.6" fill="#2A1B4A"/><circle cx="${think ? 75 : 74}" cy="${think ? 64 : 67}" r="3.6" fill="#2A1B4A"/>`}
+   <path d="M52 ${happy ? 78 : 79} q8 ${happy ? 9 : 6} 16 0" stroke="#2A1B4A" stroke-width="3.2" fill="${happy ? '#F0567A' : 'none'}" stroke-linecap="round"/>
+   <circle cx="37" cy="77" r="4.5" fill="#F0567A" opacity=".55"/><circle cx="83" cy="77" r="4.5" fill="#F0567A" opacity=".55"/></svg>`;
+}
+const gqAns = st => (st && st.gqa) || {};
+ROUTES.guide = app => {
+  shell(app, 'guide', { c1: '#5B33D6', c2: '#9B7BFF', soft: '#9B7BFF', wm: 'ض', title: 'المرشد ضاد', desc: 'أسئلة من معلمتكِ، يطرحها عليكِ ضاد سؤالًا بعد سؤال' }, body => {
+    const st = me(), Q = S.gq;
+    if (!Q.length) { body.innerHTML = `<div class="card gd-empty">${dad(130)}<p class="lead">لم تُضف المعلمة أسئلة بعد.</p></div>`; return; }
+    if (!st) { body.innerHTML = `<div class="card gd-empty">${dad(130)}<p class="lead">يحتاج ضاد إلى معرفة اسمكِ ليحفظ إجاباتك.</p><button class="btn" id="gp">اختيار الاسم</button></div>`; $('#gp').onclick = () => pickStudent(); return; }
+    const A = gqAns(st), order = [...Q.filter(q => !A[q.id]), ...Q.filter(q => A[q.id])];
+    let i = 0;
+    const draw = () => {
+      const done = Q.filter(q => gqAns(st)[q.id]).length, ok = Q.filter(q => (gqAns(st)[q.id] || {}).ok).length;
+      if (i >= order.length || (gqAns(st)[order[i].id] && done === Q.length && i === 0 && done)) {
+        body.innerHTML = `<div class="card gd-end">${dad(150, 'happy')}<h2>أنهيتِ أسئلة معلمتكِ</h2><p class="lead">أجبتِ إجابة صحيحة عن <b>${ok}</b> من <b>${Q.length}</b>.</p><button class="btn" id="gAgain">مراجعة الأسئلة</button></div>`;
+        $('#gAgain').onclick = () => { i = 0; order.sort(() => 0); drawQ(true); }; return;
+      }
+      drawQ(false);
+    };
+    const drawQ = review => {
+      const q = order[i], prev = gqAns(st)[q.id], opts = shuffle([q.a, ...q.w]);
+      body.innerHTML = `<div class="gd"><div class="gd-side">${dad(150, 'think')}<div class="gd-bub">${i === 0 && !review ? `أهلًا يا ${esc(st.name.split(' ')[0])}! عندي أسئلة من معلمتكِ.` : 'السؤال التالي…'}</div></div>
+        <div class="card gd-q"><div class="gd-top"><span>السؤال ${i + 1} من ${order.length}</span><span class="gd-dots">${order.map((x, k) => `<i class="${gqAns(st)[x.id] ? (gqAns(st)[x.id].ok ? 'ok' : 'no') : ''} ${k === i ? 'cur' : ''}"></i>`).join('')}</span></div>
+         <h2>${esc(q.q)}</h2><div class="gd-opts">${opts.map(o => `<button class="gd-o">${esc(o)}</button>`).join('')}</div><div class="gd-fb" id="gfb"></div></div></div>`;
+      $$('.gd-o').forEach(b => b.onclick = () => {
+        if (body.querySelector('.gd-o.picked')) return;
+        const ok = b.textContent === q.a; b.classList.add('picked', ok ? 'ok' : 'no');
+        if (!ok) $$('.gd-o').find(x => x.textContent === q.a).classList.add('ok');
+        st.gqa = st.gqa || {}; if (!st.gqa[q.id]) { st.gqa[q.id] = { ok, ans: b.textContent, at: Date.now() }; save(); }
+        $('.gd-side svg').outerHTML = dad(150, ok ? 'happy' : 'think');
+        $('.gd-bub').textContent = ok ? 'إجابة صحيحة، أحسنتِ!' : `الإجابة الصحيحة: ${q.a}`;
+        if (ok) starBurst('أحسنتِ ★');
+        $('#gfb').innerHTML = `<button class="btn" id="gNext">${i < order.length - 1 ? 'السؤال التالي' : 'إنهاء'}</button>`;
+        $('#gNext').onclick = () => { i++; if (i >= order.length) { i = order.length; draw(); } else drawQ(review); };
+      });
+    };
+    draw();
+  });
+};
+/* لوحة المعلمة: أسئلة المرشد ونتائجها */
+function guidePanel(body) {
+  const L = tList(), Q = S.gq;
+  const rate = q => { const r = L.map(s => gqAns(s)[q.id]).filter(Boolean); return { n: r.length, ok: r.filter(x => x.ok).length }; };
+  body.innerHTML = `<div class="row2"><div class="card"><div class="gd-head">${dad(80)}<div><h2 class="sec" style="margin:0">أسئلة المرشد ضاد</h2><p class="muted" style="margin:4px 0 0">تكتبين السؤال وإجابته الصحيحة وخيارين خاطئين، فيطرحه ضاد على الطالبات، وتظهر النتائج هنا.</p></div></div>
+     <label>السؤال</label><input type="text" id="gQ" placeholder="مثل: ما مفرد كلمة «أشجار»؟">
+     <label>الإجابة الصحيحة</label><input type="text" id="gA">
+     <label>خيار خاطئ</label><input type="text" id="gW1"><label>خيار خاطئ آخر</label><input type="text" id="gW2">
+     <br><br><button class="btn" id="gAdd">إضافة السؤال</button></div>
+    <div class="card" style="overflow:auto"><h2 class="sec">الأسئلة ونتائج الطالبات</h2>${cfilterHTML()}
+     <table class="gtab2"><tr><th>#</th><th>السؤال</th><th>أجابت</th><th>نسبة الصواب</th><th></th></tr>
+     ${Q.map((q, k) => { const r = rate(q), p = r.n ? Math.round(r.ok / r.n * 100) : null; return `<tr><td>${k + 1}</td><td>${esc(q.q)}<br><small class="muted">الصحيحة: ${esc(q.a)}</small></td><td>${r.n} من ${L.length}</td><td>${p == null ? '—' : `<span class="gbar"><i style="width:${p}%"></i></span> ${p}%`}</td><td><button class="btn ghost sm" data-gdel="${q.id}">حذف</button></td></tr>`; }).join('') || '<tr><td colspan="5" class="muted">لا توجد أسئلة.</td></tr>'}</table>
+     <p class="muted" style="font-size:14px">تُحسب الإجابة الأولى لكل طالبة، ويمكن للطالبة مراجعة الأسئلة بعد ذلك دون تغيير نتيجتها.</p></div></div>`;
+  bindCfilter();
+  $('#gAdd').onclick = () => {
+    const q = $('#gQ').value.trim(), a = $('#gA').value.trim(), w = [$('#gW1').value.trim(), $('#gW2').value.trim()].filter(Boolean);
+    if (!q || !a || !w.length) { toast('يلزم السؤال والإجابة الصحيحة وخيار خاطئ واحد على الأقل'); return; }
+    S.gq.push({ id: gqNew(), q, a, w }); save(); toast('أُضيف السؤال'); render();
+  };
+  $$('[data-gdel]').forEach(b => b.onclick = () => { if (!confirm('حذف السؤال ونتائجه؟')) return; S.gq = S.gq.filter(x => x.id !== b.dataset.gdel); save(); render(); });
+}
+
 /* ===== قلعة الإنجاز ===== */
 function ringSVG(p, color) {
   const l = levelOf(p), lo = LEVEL_AT[l], hi = LEVEL_AT[l + 1];
@@ -2989,7 +3095,7 @@ const f1n = v => v == null ? '—' : (Math.round(v * 10) / 10).toLocaleString('a
 ROUTES.teacher = (app, tab = 'students') => {
   if (!TEACHER) { go('#home'); setTimeout(teacherGate, 50); return; }
   if (tab === 'impact') tab = 'dash';
-  const tabs = [['students', 'الطالبات والفصول'], ['dash', 'لوحة النتائج'], ['grades', 'إدخال الدرجات'], ['track', 'المتابعة'], ['content', 'المحتوى'], ['settings', 'الإعدادات']];
+  const tabs = [['students', 'الطالبات والفصول'], ['dash', 'لوحة النتائج'], ['grades', 'إدخال الدرجات'], ['track', 'المتابعة'], ['guide', 'أسئلة المرشد'], ['content', 'المحتوى'], ['settings', 'الإعدادات']];
   shell(app, '', { c1: '#3B2A6B', c2: '#7B4DFF', soft: '#7B4DFF', title: 'لوحة المعلمة', desc: 'الفصول والطالبات، ولوحة النتائج، والمحتوى', icon: ISVG.lock, tabs, active: tab, base: 'teacher' }, () => { });
   const body = $('#body'); body.classList.add('tpanel');
   const acct = typeof CLOUD !== 'undefined' && CLOUD.user;
@@ -3032,6 +3138,8 @@ ROUTES.teacher = (app, tab = 'students') => {
     dashPanel(body);
   } else if (tab === 'grades') {
     gradesPanel(body);
+  } else if (tab === 'guide') {
+    guidePanel(body);
   } else if (tab === 'track') {
     const rows = tList().map(s => { const f = s.flu && s.flu.length ? s.flu[s.flu.length - 1] : null; const f0 = s.flu && s.flu.length > 1 ? s.flu[0] : null; return { s, f, f0 }; });
     body.innerHTML = `<div class="card" style="overflow:auto"><h2 class="sec">متابعة الإنجاز</h2>${cfilterHTML()}<table><tr><th>الطالبة</th>${S.classes.length ? '<th>الفصل</th>' : ''}${Object.values(ISLANDS).map(I => `<th>${I.short}</th>`).join('')}<th>المجموع</th><th>الشارات</th><th>أول قياس طلاقة</th><th>آخر قياس طلاقة</th><th>تسجيلات</th></tr>
